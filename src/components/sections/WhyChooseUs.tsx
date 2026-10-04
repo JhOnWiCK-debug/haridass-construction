@@ -1,91 +1,102 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { CheckCircle2, Shield, Eye, Clock, Compass, Phone } from "lucide-react";
-import { WHY_CHOOSE_US, BUSINESS_INFO } from "@/data/constructionData";
+import {
+  HeartHandshake,
+  Sparkles,
+  MapPin,
+  Clock,
+  ShieldCheck,
+  Smile,
+  CheckCircle,
+} from "lucide-react";
 
-const icons = [Shield, Eye, Clock, Compass];
+export const WhyChooseUs: React.FC = () => {
+  const points = [
+    {
+      icon: <HeartHandshake className="w-6 h-6 text-emerald-600" />,
+      title: "Patient-Focused Care",
+      description:
+        "Every treatment plan is personalized. We take the time to listen, explain clinical options transparently, and proceed only with your informed comfort.",
+    },
+    {
+      icon: <Smile className="w-6 h-6 text-emerald-600" />,
+      title: "Gentle & Comfortable Environment",
+      description:
+        "Designed to alleviate dental anxiety with relaxing interiors, soothing ambient lighting, and friendly pediatric decor to put all ages at ease.",
+    },
+    {
+      icon: <ShieldCheck className="w-6 h-6 text-emerald-600" />,
+      title: "Multidisciplinary Specialist Team",
+      description:
+        "From root canals by Chief Dentist Dr. Krishnapriya G to consultant oral surgeons, orthodontists, periodontists, and pedodontists.",
+    },
+    {
+      icon: <MapPin className="w-6 h-6 text-emerald-600" />,
+      title: "Convenient Mogappair East Location",
+      description:
+        "Easily accessible on Valayapathi Salai (Block 6) with landmark Plus Code 35HP+8F, serving families across Mogappair and surrounding Chennai areas.",
+    },
+    {
+      icon: <Clock className="w-6 h-6 text-emerald-600" />,
+      title: "Dedicated Evening Consultation Hours",
+      description:
+        "Open Monday through Saturday from 5:00 PM to 8:30 PM, making it convenient to attend appointments after work or school without disrupting daytime routines.",
+    },
+    {
+      icon: <Sparkles className="w-6 h-6 text-emerald-600" />,
+      title: "Women-Owned, Ethical Healthcare",
+      description:
+        "Founded on genuine clinical integrity and kindness. Strict sterilization, unhurried consultations, and patient-first medical ethics.",
+    },
+  ];
 
-export default function WhyChooseUs() {
   return (
-    <section id="why-us" className="relative py-24 sm:py-32 bg-[#0c0d10] border-t border-white/10">
+    <section className="py-20 lg:py-28 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#c5a880] mb-3">
-            <span className="w-2 h-0.5 bg-[#c5a880]" />
-            Our Difference
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-3 border border-emerald-200/60">
+            <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+            Why Jaksh&apos;s Dental Junction
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-tight">
-            Why Choose Haridass Construction?
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Caring Dentistry Backed by Clinical Dedication
           </h2>
-          <p className="text-gray-400 text-sm sm:text-base mt-3 leading-relaxed">
-            Constructing a building is one of your most significant investments. We approach every site with structural discipline, quality inputs, and genuine accountability.
+          <p className="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">
+            We believe dental visits should be calm, transparent, and gentle. Here is why patients in Mogappair East trust our team.
           </p>
         </div>
 
-        {/* 4 Strong Points Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {WHY_CHOOSE_US.map((item, idx) => {
-            const IconComponent = icons[idx] || Shield;
-            return (
-              <div
-                key={item.number}
-                className="group relative bg-[#111317] border border-white/10 hover:border-[#c5a880]/50 p-8 rounded-sm transition-all duration-300 flex flex-col justify-between"
-              >
-                {/* Architectural Numeral */}
-                <div>
-                  <div className="flex items-center justify-between mb-8">
-                    <span className="text-3xl sm:text-4xl font-serif font-light text-[#c5a880]/80 group-hover:text-[#c5a880] transition-colors">
-                      {item.number}
-                    </span>
-                    <div className="w-10 h-10 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center text-[#c5a880] group-hover:bg-[#c5a880]/10 transition-colors">
-                      <IconComponent className="w-5 h-5" />
-                    </div>
-                  </div>
-
-                  <h3 className="text-xl font-serif text-white group-hover:text-[#dfbe99] transition-colors mb-3 leading-snug">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    {item.description}
-                  </p>
+        {/* 6 Grid Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {points.map((pt, idx) => (
+            <div
+              key={idx}
+              className="clinic-card-hover p-8 rounded-3xl bg-white border border-slate-200/80 shadow-xs hover:border-emerald-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200/60 flex items-center justify-center mb-6">
+                  {pt.icon}
                 </div>
-
-                <div className="pt-6 mt-6 border-t border-white/5 flex items-center gap-2 text-xs text-gray-400 font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#c5a880]" />
-                  <span>Ambattur • Chennai</span>
-                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  {pt.title}
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  {pt.description}
+                </p>
               </div>
-            );
-          })}
-        </div>
 
-        {/* Local Commitment Banner */}
-        <div className="mt-12 bg-gradient-to-r from-[#111317] via-[#16191f] to-[#111317] border border-white/10 p-6 sm:p-8 rounded-sm flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-sm bg-[#c5a880]/15 border border-[#c5a880]/30 flex items-center justify-center text-[#c5a880] shrink-0">
-              <CheckCircle2 className="w-6 h-6" />
-            </div>
-            <div>
-              <div className="text-white font-serif text-lg">Direct Contractor Access</div>
-              <div className="text-gray-400 text-xs sm:text-sm">
-                Speak directly with our principal team for clear site updates and transparent timelines.
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-bold text-emerald-700">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                Jaksh&apos;s Clinical Standard
               </div>
             </div>
-          </div>
-
-          <a
-            href={BUSINESS_INFO.phoneTel}
-            className="px-5 py-3 bg-white/10 hover:bg-white/20 border border-white/15 text-white font-mono text-xs font-semibold uppercase tracking-wider flex items-center gap-2 rounded-sm transition-colors shrink-0"
-          >
-            <Phone className="w-3.5 h-3.5 text-[#c5a880]" />
-            Call {BUSINESS_INFO.phoneDisplay}
-          </a>
+          ))}
         </div>
+
       </div>
     </section>
   );
-}
+};

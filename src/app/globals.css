@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #090a0c;
-  --foreground: #f3f3f1;
-  --card-bg: #111317;
-  --card-border: rgba(255, 255, 255, 0.08);
-  --accent-gold: #c5a880;
-  --accent-gold-light: #dfbe99;
-  --accent-gold-dark: #9e815b;
-  --stone-muted: #8b8f98;
+  --background: #fbfdfb;
+  --foreground: #0f172a;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --primary-green: #16a34a;
+  --primary-green-light: #22c55e;
+  --primary-green-soft: #f0fdf4;
+  --primary-green-dark: #14532d;
+  --accent-mint: #dcfce7;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-stone-card: #111317;
-  --color-stone-card-hover: #171a20;
-  --color-stone-border: rgba(255, 255, 255, 0.08);
-  --color-gold: #c5a880;
-  --color-gold-light: #dfbe99;
-  --color-gold-dark: #9e815b;
-  --color-stone-muted: #8b8f98;
+  --color-clinic-green: #16a34a;
+  --color-clinic-light: #22c55e;
+  --color-clinic-soft: #f0fdf4;
+  --color-clinic-dark: #14532d;
+  --color-clinic-mint: #dcfce7;
+  --color-clinic-emerald: #15803d;
 }
 
 * {
@@ -29,104 +29,90 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  background-color: #090a0c;
-  color: #f3f3f1;
+  background-color: #fbfdfb;
+  color: #0f172a;
   overflow-x: hidden;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  selection-background-color: #c5a880;
-  selection-color: #090a0c;
+  selection-background-color: #bbf7d0;
+  selection-color: #14532d;
 }
 
 ::selection {
-  background: rgba(197, 168, 128, 0.3);
-  color: #ffffff;
+  background: #bbf7d0;
+  color: #14532d;
 }
 
-/* Custom Architectural Scrollbar */
+/* Custom Healthcare Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #090a0c;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #252830;
-  border-radius: 3px;
+  background: #86efac;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #c5a880;
+  background: #22c55e;
 }
 
-/* Architectural Grid & Accents */
-.bg-architectural-grid {
-  background-size: 60px 60px;
+/* Subtle Medical Grid Pattern */
+.bg-clinic-grid {
+  background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(to right, rgba(34, 197, 94, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34, 197, 94, 0.04) 1px, transparent 1px);
 }
 
-.bg-architectural-radial {
-  background: radial-gradient(circle at 50% 0%, rgba(197, 168, 128, 0.08) 0%, transparent 60%);
+.bg-clinic-dots {
+  background-image: radial-gradient(rgba(34, 197, 94, 0.09) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-.hairline-border {
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Healthcare Card & Panels */
+.clinic-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hairline-border-gold {
-  border: 1px solid rgba(197, 168, 128, 0.25);
+.clinic-card-hover {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hairline-b {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.clinic-card-hover:hover {
+  border-color: #86efac;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -10px rgba(22, 163, 74, 0.12);
 }
 
-.hairline-t {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+/* Soft shadows */
+.soft-shadow {
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
 }
 
-/* Glass Panels */
-.glass-panel {
-  background: rgba(17, 19, 23, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+.soft-shadow-green {
+  box-shadow: 0 10px 30px -5px rgba(22, 163, 74, 0.14);
 }
 
-.glass-panel-hover {
-  background: rgba(17, 19, 23, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-panel-hover:hover {
-  background: rgba(23, 26, 32, 0.95);
-  border-color: rgba(197, 168, 128, 0.35);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-}
-
-/* Image zoom & hover transitions */
-.img-zoom-container {
-  overflow: hidden;
-}
-
-.img-zoom-container img {
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.img-zoom-container:hover img {
-  transform: scale(1.06);
-}
-
-/* Subtle gold ambient glow */
-.gold-glow {
-  text-shadow: 0 0 24px rgba(197, 168, 128, 0.4);
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Print optimizations */
@@ -134,5 +120,8 @@ body {
   body {
     background: #ffffff;
     color: #000000;
+  }
+  .no-print {
+    display: none !important;
   }
 }

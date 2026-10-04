@@ -1,396 +1,342 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { CLINIC_INFO } from "@/data/clinicInfo";
+import { DENTAL_SERVICES } from "@/data/services";
+import { DOCTORS } from "@/data/doctors";
 import {
   X,
   Calendar,
   Clock,
+  User,
+  Phone,
+  Mail,
+  Send,
   CheckCircle2,
-  PhoneCall,
-  ShieldCheck,
-  Sparkles,
-  ArrowRight,
-  Sun,
-  Users,
+  AlertCircle,
+  MessageSquare,
 } from "lucide-react";
-import confetti from "canvas-confetti";
 
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
+  preselectedDoctor?: string;
+  preselectedService?: string;
 }
 
-export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
-  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
-  const [closersCount, setClosersCount] = useState("4 - 8 Closers");
-  const [selectedState, setSelectedState] = useState("California (NEM 3.0)");
-  const [currentSource, setCurrentSource] = useState("Shared Aggregators (Angi/CleanEnergy)");
-  const [selectedDate, setSelectedDate] = useState("Tomorrow, 11:00 AM EST");
+export const BookingModal: React.FC<BookingModalProps> = ({
+  isOpen,
+  onClose,
+  preselectedDoctor = "",
+  preselectedService = "",
+}) => {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
-    company: "",
+    email: "",
+    date: "",
+    time: "5:30 PM",
+    doctor: preselectedDoctor,
+    service: preselectedService || "General Dental Care",
+    message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (preselectedDoctor) setFormData((prev) => ({ ...prev, doctor: preselectedDoctor }));
+    if (preselectedService) setFormData((prev) => ({ ...prev, service: preselectedService }));
+  }, [preselectedDoctor, preselectedService]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
-  const dates = [
-    "Tomorrow, 10:00 AM EST",
-    "Tomorrow, 11:30 AM EST",
-    "Tomorrow, 2:00 PM EST",
-    "Thursday, 1:00 PM EST",
-    "Thursday, 3:30 PM EST",
-    "Friday, 11:00 AM EST",
+  const timeSlots = [
+    "5:00 PM",
+    "5:30 PM",
+    "6:00 PM",
+    "6:30 PM",
+    "7:00 PM",
+    "7:30 PM",
+    "8:00 PM",
   ];
 
-  const states = [
-    "California (NEM 3.0)",
-    "Texas (ERCOT / Co-ops)",
-    "Florida (FPL / Duke)",
-    "Arizona / Nevada",
-    "North Carolina / East Coast",
-    "Multi-State / Nationwide",
-  ];
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    if (!formData.name.trim()) newErrors.name = "Please enter your name";
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Please enter your phone number";
+    } else if (!/^[0-9+ -]{10,14}$/.test(formData.phone.trim())) {
+      newErrors.phone = "Please enter a valid 10-digit number";
+    }
+    if (!formData.date) newErrors.date = "Please select a date";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    if (validate()) {
+      setSubmitted(true);
+    }
+  };
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setStep(4);
-      confetti({
-        particleCount: 90,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ["#00ff88", "#00f0ff", "#ffffff", "#10b981"],
-      });
-    }, 700);
+  const handleWhatsAppBooking = () => {
+    const text = `Hello Jaksh's Dental Junction, I would like to request an appointment:
+- Name: ${formData.name || "Patient"}
+- Phone: ${formData.phone || "Not provided"}
+- Preferred Date: ${formData.date || "Next available"}
+- Preferred Time: ${formData.time}
+- Service: ${formData.service}
+${formData.doctor ? `- Doctor: ${formData.doctor}\n` : ""}${formData.message ? `- Notes: ${formData.message}` : ""}`;
+    const url = `https://wa.me/918825564486?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto animate-in fade-in duration-200"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="booking-modal-title"
+    >
       {/* Backdrop */}
       <div
+        className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
         onClick={onClose}
-        className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
       />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-2xl rounded-2xl border border-white/15 bg-[#070e1c] shadow-[0_0_60px_rgba(0,255,136,0.15)] text-gray-100 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200">
-        {/* Header Bar */}
-        <div className="flex items-center justify-between border-b border-white/10 px-6 py-4 bg-white/[0.02]">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
-              <Sun className="h-4 w-4" />
+      <div className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-emerald-100 overflow-hidden z-10 my-auto animate-in zoom-in-95 duration-200">
+        
+        {/* Header */}
+        <div className="p-6 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/60 border-b border-emerald-100 flex items-start justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-wider">
+                Mogappair East, Chennai
+              </span>
             </div>
-            <div>
-              <div className="text-sm font-semibold tracking-wide text-white">
-                HOUSE OF NEXUM // DISCOVERY CALL
-              </div>
-              <div className="text-xs text-gray-400 font-mono">
-                Dedicated Mexico Pod Feasibility & Seat Allocation
-              </div>
-            </div>
+            <h3
+              id="booking-modal-title"
+              className="text-xl sm:text-2xl font-extrabold text-slate-900"
+            >
+              Book an Appointment
+            </h3>
+            <p className="text-xs text-slate-500 mt-0.5">
+              Monday – Saturday: 5:00 PM – 8:30 PM (Sunday Closed)
+            </p>
           </div>
+
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-gray-400 hover:bg-white/10 hover:text-white transition-colors"
+            className="p-2 rounded-xl bg-white text-slate-400 hover:text-slate-700 hover:bg-slate-100 border border-slate-200"
+            aria-label="Close booking modal"
           >
-            <X className="h-5 w-5" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Progress Bar */}
-        <div className="h-1 w-full bg-white/5">
-          <div
-            className="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 transition-all duration-300"
-            style={{ width: `${(step / 4) * 100}%` }}
-          />
-        </div>
-
-        {/* Step 1: Solar Operation Profile */}
-        {step === 1 && (
-          <div className="p-6 sm:p-8 space-y-6">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-emerald-400">
-                Step 01 / 03 • Operations Audit
-              </span>
-              <h3 className="mt-1 text-xl font-bold text-white">
-                How large is your current solar sales floor?
-              </h3>
-              <p className="mt-1 text-sm text-gray-400">
-                We calibrate team caller pods to maintain a minimum of 3-5 confirmed sits per closer per day.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {["1 - 3 Closers", "4 - 8 Closers", "9 - 15 Closers", "16+ Closers"].map(
-                (item) => (
-                  <button
-                    key={item}
-                    type="button"
-                    onClick={() => setClosersCount(item)}
-                    className={`p-3 text-left rounded-xl border text-sm font-medium transition-all ${
-                      closersCount === item
-                        ? "border-emerald-400 bg-emerald-500/15 text-emerald-300 shadow-[0_0_15px_rgba(0,255,136,0.2)]"
-                        : "border-white/10 bg-white/[0.03] text-gray-300 hover:border-white/20"
-                    }`}
-                  >
-                    <Users className="h-4 w-4 mb-2 text-emerald-400" />
-                    {item}
-                  </button>
-                )
-              )}
-            </div>
-
-            <div>
-              <label className="text-xs font-mono uppercase tracking-wider text-gray-300 block mb-2">
-                Primary Target Solar Territory
-              </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {states.map((st) => (
-                  <button
-                    key={st}
-                    type="button"
-                    onClick={() => setSelectedState(st)}
-                    className={`px-3 py-2 text-left rounded-lg border text-xs font-medium transition-all ${
-                      selectedState === st
-                        ? "border-cyan-400 bg-cyan-500/15 text-cyan-300"
-                        : "border-white/10 bg-white/[0.02] text-gray-300 hover:border-white/20"
-                    }`}
-                  >
-                    {st}
-                  </button>
-                ))}
+        {/* Content */}
+        <div className="p-6 sm:p-8 max-h-[75vh] overflow-y-auto">
+          {submitted ? (
+            <div className="text-center py-6 space-y-4">
+              <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center">
+                <CheckCircle2 className="w-8 h-8" />
               </div>
-            </div>
-
-            <div className="flex justify-end pt-4 border-t border-white/10">
-              <button
-                type="button"
-                onClick={() => setStep(2)}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-2.5 text-sm font-semibold text-slate-950 hover:brightness-110 transition-all shadow-[0_0_20px_rgba(0,255,136,0.3)]"
-              >
-                <span>Continue to Time Slot</span>
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Step 2: Time Selection */}
-        {step === 2 && (
-          <div className="p-6 sm:p-8 space-y-6">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-emerald-400">
-                Step 02 / 03 • Calendar Selection
-              </span>
-              <h3 className="mt-1 text-xl font-bold text-white">
-                Select your 20-minute Strategy Call
-              </h3>
-              <p className="mt-1 text-sm text-gray-400">
-                Review call recordings, objection handling scripts, and Mexico pod seat pricing with our Partner Director.
+              <h4 className="text-xl font-bold text-slate-900">
+                Request Submitted Successfully!
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 max-w-sm mx-auto">
+                Thank you, <strong>{formData.name}</strong>. Our front desk will call you at <strong>{formData.phone}</strong> to confirm your appointment time.
               </p>
-            </div>
 
-            <div className="space-y-2.5">
-              {dates.map((d) => (
-                <button
-                  key={d}
-                  type="button"
-                  onClick={() => setSelectedDate(d)}
-                  className={`w-full flex items-center justify-between p-3.5 rounded-xl border text-sm font-medium transition-all ${
-                    selectedDate === d
-                      ? "border-emerald-400 bg-emerald-500/15 text-emerald-300 shadow-[0_0_15px_rgba(0,255,136,0.15)]"
-                      : "border-white/10 bg-white/[0.02] text-gray-300 hover:border-white/20"
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <Calendar className="h-4 w-4 text-emerald-400" />
-                    <span>{d}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs font-mono text-gray-400">
-                    <Clock className="h-3.5 w-3.5" />
-                    <span>20 Min Zoom</span>
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between pt-4 border-t border-white/10">
               <button
-                type="button"
-                onClick={() => setStep(1)}
-                className="text-xs text-gray-400 hover:text-white"
+                onClick={handleWhatsAppBooking}
+                className="w-full py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm flex items-center justify-center gap-2"
               >
-                ← Back
+                <MessageSquare className="w-4 h-4" />
+                Confirm on WhatsApp (088255 64486)
               </button>
+
               <button
-                type="button"
-                onClick={() => setStep(3)}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-2.5 text-sm font-semibold text-slate-950 hover:brightness-110 transition-all shadow-[0_0_20px_rgba(0,255,136,0.3)]"
+                onClick={onClose}
+                className="w-full py-2 px-4 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-100"
               >
-                <span>Final Step: Contact Info</span>
-                <ArrowRight className="h-4 w-4" />
+                Close Window
               </button>
             </div>
-          </div>
-        )}
-
-        {/* Step 3: Contact Info & Confirm */}
-        {step === 3 && (
-          <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-5">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-emerald-400">
-                Step 03 / 03 • Reservation Lock
-              </span>
-              <h3 className="mt-1 text-xl font-bold text-white">
-                Where should we send the calendar invitation?
-              </h3>
-              <p className="mt-1 text-sm text-gray-400">
-                Selected: <span className="text-emerald-300 font-mono">{selectedDate}</span> for {closersCount} ({selectedState})
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Name */}
               <div>
-                <label className="text-xs font-mono uppercase tracking-wider text-gray-300 block mb-1.5">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                   Full Name *
                 </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Cole Sterling"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none"
-                />
-              </div>
-              <div>
-                <label className="text-xs font-mono uppercase tracking-wider text-gray-300 block mb-1.5">
-                  Solar Company / Org *
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Apex Solar Solutions"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none"
-                />
-              </div>
-              <div>
-                <label className="text-xs font-mono uppercase tracking-wider text-gray-300 block mb-1.5">
-                  Corporate Email *
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="cole@apexsolar.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none"
-                />
-              </div>
-              <div>
-                <label className="text-xs font-mono uppercase tracking-wider text-gray-300 block mb-1.5">
-                  Direct Mobile Phone *
-                </label>
-                <input
-                  type="tel"
-                  required
-                  placeholder="(555) 019-2834"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none"
-                />
-              </div>
-            </div>
-
-            <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-3 flex items-start gap-2.5">
-              <ShieldCheck className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
-              <div className="text-xs text-gray-300">
-                <span className="font-semibold text-emerald-300">Zero Obligation Feasibility:</span> We review sample cold call audio, DNC list hygiene guarantees, and your exact market territory economics.
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between pt-4 border-t border-white/10">
-              <button
-                type="button"
-                onClick={() => setStep(2)}
-                className="text-xs text-gray-400 hover:text-white"
-              >
-                ← Back
-              </button>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-7 py-3 text-sm font-semibold text-slate-950 hover:brightness-110 transition-all shadow-[0_0_25px_rgba(0,255,136,0.35)] disabled:opacity-60"
-              >
-                {isSubmitting ? (
-                  <span>Securing Calendar Slot...</span>
-                ) : (
-                  <>
-                    <PhoneCall className="h-4 w-4" />
-                    <span>Confirm Discovery Call</span>
-                  </>
+                <div className="relative">
+                  <User className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                  <input
+                    type="text"
+                    placeholder="Patient Name"
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                    className={`w-full pl-9 pr-3 py-2 rounded-xl border text-sm text-slate-900 bg-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
+                      errors.name ? "border-red-400" : "border-slate-300"
+                    }`}
+                  />
+                </div>
+                {errors.name && (
+                  <p className="text-[11px] text-red-500 mt-1">{errors.name}</p>
                 )}
-              </button>
-            </div>
-          </form>
-        )}
-
-        {/* Step 4: Success Confirmed */}
-        {step === 4 && (
-          <div className="p-8 sm:p-10 text-center space-y-6">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 shadow-[0_0_30px_rgba(0,255,136,0.3)]">
-              <CheckCircle2 className="h-9 w-9" />
-            </div>
-
-            <div className="space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
-                <Sparkles className="h-3.5 w-3.5" />
-                CALENDAR INVITATION DISPATCHED
               </div>
-              <h3 className="text-2xl font-bold text-white">
-                You&apos;re Confirmed with House of Nexum
-              </h3>
-              <p className="text-sm text-gray-300 max-w-md mx-auto">
-                We sent calendar details and Zoom credentials to{" "}
-                <span className="text-emerald-300 font-mono">
-                  {formData.email || "your email"}
-                </span>
-                .
-              </p>
-            </div>
 
-            <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] max-w-md mx-auto text-left space-y-2 text-xs font-mono text-gray-300">
-              <div className="flex justify-between border-b border-white/5 pb-1.5">
-                <span className="text-gray-400">SESSION TIME:</span>
-                <span className="text-cyan-300">{selectedDate}</span>
+              {/* Phone */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Phone Number *
+                </label>
+                <div className="relative">
+                  <Phone className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                  <input
+                    type="tel"
+                    placeholder="10-digit mobile number"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                    className={`w-full pl-9 pr-3 py-2 rounded-xl border text-sm text-slate-900 bg-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
+                      errors.phone ? "border-red-400" : "border-slate-300"
+                    }`}
+                  />
+                </div>
+                {errors.phone && (
+                  <p className="text-[11px] text-red-500 mt-1">{errors.phone}</p>
+                )}
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-1.5">
-                <span className="text-gray-400">ORGANIZATION:</span>
-                <span className="text-white">{formData.company || "Solar Installer Partner"}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">TERRITORY:</span>
-                <span className="text-emerald-300">{selectedState}</span>
-              </div>
-            </div>
 
-            <button
-              onClick={onClose}
-              className="rounded-xl border border-white/20 bg-white/5 px-6 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
-            >
-              Done & Return to Overview
-            </button>
-          </div>
-        )}
+              <div className="grid grid-cols-2 gap-3">
+                {/* Date */}
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    Date *
+                  </label>
+                  <input
+                    type="date"
+                    value={formData.date}
+                    onChange={(e) =>
+                      setFormData({ ...formData, date: e.target.value })
+                    }
+                    className={`w-full px-3 py-2 rounded-xl border text-sm text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
+                      errors.date ? "border-red-400" : "border-slate-300"
+                    }`}
+                  />
+                  {errors.date && (
+                    <p className="text-[11px] text-red-500 mt-1">{errors.date}</p>
+                  )}
+                </div>
+
+                {/* Time */}
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    Time (5PM - 8:30PM)
+                  </label>
+                  <select
+                    value={formData.time}
+                    onChange={(e) =>
+                      setFormData({ ...formData, time: e.target.value })
+                    }
+                    className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  >
+                    {timeSlots.map((slot) => (
+                      <option key={slot} value={slot}>
+                        {slot}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Service */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Treatment / Service
+                </label>
+                <select
+                  value={formData.service}
+                  onChange={(e) =>
+                    setFormData({ ...formData, service: e.target.value })
+                  }
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                >
+                  {DENTAL_SERVICES.map((s) => (
+                    <option key={s.id} value={s.name}>
+                      {s.name}
+                    </option>
+                  ))}
+                  <option value="Consultation / Check-up">Consultation / Check-up</option>
+                </select>
+              </div>
+
+              {/* Doctor */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Doctor (Optional)
+                </label>
+                <select
+                  value={formData.doctor}
+                  onChange={(e) =>
+                    setFormData({ ...formData, doctor: e.target.value })
+                  }
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                >
+                  <option value="">Any Specialist</option>
+                  {DOCTORS.map((d) => (
+                    <option key={d.id} value={d.name}>
+                      {d.name} ({d.specialty})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  className="w-full py-3 rounded-xl text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-md shadow-emerald-600/30 transition-all flex items-center justify-center gap-2"
+                >
+                  <Send className="w-4 h-4" />
+                  Request Appointment
+                </button>
+              </div>
+
+              <div className="text-center pt-2">
+                <a
+                  href={CLINIC_INFO.phone}
+                  className="text-xs font-bold text-emerald-800 hover:underline"
+                >
+                  Or Call Direct: {CLINIC_INFO.phoneDisplay}
+                </a>
+              </div>
+            </form>
+          )}
+        </div>
+
       </div>
     </div>
   );
-}
+};

@@ -1,50 +1,56 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Cinzel } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { BUSINESS_INFO } from "@/data/constructionData";
+import { CLINIC_INFO } from "@/data/clinicInfo";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const cinzel = Cinzel({
-  variable: "--font-serif",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#090a0c",
-  colorScheme: "dark",
+  themeColor: "#16a34a",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 };
 
 export const metadata: Metadata = {
-  title: "Haridass Construction | Builders & Construction Company in Chennai",
+  metadataBase: new URL("https://jakshsdentaljunction.com"),
+  title: "Jaksh's Dental Junction | Dental Care in Mogappair East, Chennai",
   description:
-    "Haridass Construction provides quality construction services in Ambattur, Chennai, with a focus on reliable service, quality materials and professional workmanship.",
+    "Jaksh's Dental Junction is a premier women-owned dental clinic on Valayapathi Salai, Mogappair East, Chennai, led by Dr. Krishnapriya G (Rotary Endodontist with 12 years clinical practice). Specialist dental care where dentistry and kindness meet.",
   keywords: [
-    "Haridass Construction",
-    "Builders in Ambattur Chennai",
-    "Construction Company Ambattur",
-    "Real Estate Builders Chennai",
-    "Residential Construction Chennai",
-    "Civil Contractors Ambattur",
-    "Commercial Building Construction Chennai",
-    "Building Renovation Chennai",
-    "Kallikuppam Builders",
+    "Jaksh's Dental Junction",
+    "Dentist in Mogappair East",
+    "Dental clinic in Mogappair",
+    "Dentist in Chennai",
+    "Dental care in Mogappair East",
+    "Dr Krishnapriya G",
+    "Root canal specialist Mogappair",
+    "Orthodontist Mogappair",
+    "Dental implants Chennai",
+    "Women owned dental clinic Chennai",
+    "Dentist Valayapathi Salai",
   ],
-  authors: [{ name: "Haridass Construction" }],
+  authors: [{ name: "Jaksh's Dental Junction" }, { name: "Dr. Krishnapriya G" }],
   openGraph: {
-    title: "Haridass Construction | Builders & Construction Company in Chennai",
+    title: "Jaksh's Dental Junction | Dental Care in Mogappair East, Chennai",
     description:
-      "Haridass Construction provides quality construction services in Ambattur, Chennai, with a focus on reliable service, quality materials and professional workmanship.",
+      "Professional, gentle dental care in Mogappair East, Chennai. Led by Dr. Krishnapriya G with a team of specialist consultant doctors. Where dentistry and kindness meet.",
     type: "website",
     locale: "en_IN",
-    siteName: "Haridass Construction",
+    siteName: "Jaksh's Dental Junction",
+    images: [
+      {
+        url: "/images/dental/clinic-exterior-sign.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Jaksh's Dental Junction - Mogappair East, Chennai",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -59,43 +65,72 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "GeneralContractor",
-    "name": BUSINESS_INFO.name,
-    "description": "Professional construction company focused on quality construction, reliable service, beautiful designs, and high-quality materials.",
-    "telephone": BUSINESS_INFO.phoneDisplay,
-    "address": {
+    "@type": "Dentist",
+    name: CLINIC_INFO.name,
+    description:
+      "Jaksh's Dental Junction is a patient-centric, women-owned dental clinic in Mogappair East, Chennai, founded by Rotary Endodontist Dr. Krishnapriya G. Providing specialist root canals, implants, orthodontics, restorations, and preventive care.",
+    telephone: CLINIC_INFO.phoneDisplay,
+    url: "https://jakshsdentaljunction.com",
+    image: "/images/dental/clinic-exterior-sign.jpg",
+    founder: {
+      "@type": "Person",
+      name: "Dr. Krishnapriya G",
+      jobTitle: "Founder & Chief Dentist",
+      honorificPrefix: "Dr.",
+      award: "Anbu Maruthuvar Awardee",
+    },
+    address: {
       "@type": "PostalAddress",
-      "streetAddress": "No. 48, 4th Street, East Balaji Nagar, Kallikuppam",
-      "addressLocality": "Ambattur",
-      "addressRegion": "Tamil Nadu",
-      "postalCode": "600053",
-      "addressCountry": "IN"
+      streetAddress: CLINIC_INFO.address.street,
+      addressLocality: CLINIC_INFO.address.area,
+      addressRegion: CLINIC_INFO.address.state,
+      postalCode: CLINIC_INFO.address.pincode,
+      addressCountry: "IN",
     },
-    "geo": {
+    geo: {
       "@type": "GeoCoordinates",
-      "latitude": 13.1197,
-      "longitude": 80.1481
+      latitude: 13.0888998,
+      longitude: 80.1764654,
     },
-    "areaServed": [
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        opens: "17:00",
+        closes: "20:30",
+      },
+    ],
+    priceRange: "$$",
+    paymentAccepted: "Cash, UPI, Credit Card, Debit Card",
+    areaServed: [
       {
         "@type": "City",
-        "name": "Chennai"
+        name: "Chennai",
       },
       {
         "@type": "AdministrativeArea",
-        "name": "Ambattur"
-      }
+        name: "Mogappair East",
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "Mogappair West",
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "Anna Nagar",
+      },
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "21",
-      "bestRating": "5"
-    }
   };
 
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <head>
         <script
           type="application/ld+json"
@@ -103,7 +138,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${jakarta.variable} ${cinzel.variable} font-sans bg-[#090a0c] text-[#f3f3f1] min-h-screen antialiased selection:bg-[#c5a880]/30 selection:text-white`}
+        className={`${jakarta.variable} font-sans bg-[#fbfdfb] text-slate-800 min-h-screen antialiased`}
       >
         {children}
       </body>

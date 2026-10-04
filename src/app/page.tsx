@@ -1,110 +1,97 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import HeroSection from "@/components/sections/HeroSection";
-import TrustBar from "@/components/sections/TrustBar";
-import AboutSection from "@/components/sections/AboutSection";
-import ServicesSection from "@/components/sections/ServicesSection";
-import ProjectGallery from "@/components/sections/ProjectGallery";
-import WhyChooseUs from "@/components/sections/WhyChooseUs";
-import ReviewsSection from "@/components/sections/ReviewsSection";
-import ProcessSection from "@/components/sections/ProcessSection";
-import CostEstimator from "@/components/sections/CostEstimator";
-import LocationSection from "@/components/sections/LocationSection";
-import ContactSection from "@/components/sections/ContactSection";
-import ConsultationModal from "@/components/ui/ConsultationModal";
-import ProjectLightbox from "@/components/ui/ProjectLightbox";
-import FloatingContactBar from "@/components/ui/FloatingContactBar";
-import { PROJECTS, ProjectItem } from "@/data/constructionData";
+import { Navbar } from "@/components/layout/Navbar";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { DoctorsSection } from "@/components/sections/DoctorsSection";
+import { ServicesSection } from "@/components/sections/ServicesSection";
+import { PostCareSection } from "@/components/sections/PostCareSection";
+import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
+import { GallerySection } from "@/components/sections/GallerySection";
+import { LocationSection } from "@/components/sections/LocationSection";
+import { AppointmentSection } from "@/components/sections/AppointmentSection";
+import { Footer } from "@/components/layout/Footer";
+import { ChatWidget } from "@/components/ui/ChatWidget";
+import { FloatingActions } from "@/components/ui/FloatingActions";
+import { BookingModal } from "@/components/ui/BookingModal";
 
 export default function HomePage() {
-  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState("");
   const [selectedService, setSelectedService] = useState("");
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
-  const handleOpenConsultation = (serviceName = "") => {
+  const handleOpenBookingModal = (doctor = "", service = "") => {
+    setSelectedDoctor(doctor);
+    setSelectedService(service);
+    setIsBookingModalOpen(true);
+  };
+
+  const handleDoctorSelected = (doctorName: string) => {
+    setSelectedDoctor(doctorName);
+    setIsBookingModalOpen(true);
+  };
+
+  const handleServiceSelected = (serviceName: string) => {
     setSelectedService(serviceName);
-    setIsConsultationOpen(true);
-  };
-
-  const handleOpenLightbox = (project: ProjectItem) => {
-    setSelectedProject(project);
-    setIsLightboxOpen(true);
-  };
-
-  const handleCloseLightbox = () => {
-    setIsLightboxOpen(false);
-    setSelectedProject(null);
+    setIsBookingModalOpen(true);
   };
 
   return (
-    <div className="min-h-screen bg-[#090a0c] text-[#f3f3f1] font-sans antialiased selection:bg-[#c5a880]/30 selection:text-white">
-      {/* Sticky Responsive Navbar */}
-      <Navbar onOpenConsultation={() => handleOpenConsultation()} />
+    <div className="min-h-screen bg-[#fbfdfb] text-slate-800 font-sans antialiased selection:bg-emerald-200 selection:text-emerald-950">
+      
+      {/* 1. Header / Sticky Navigation */}
+      <Navbar onOpenAppointmentModal={() => handleOpenBookingModal()} />
 
       <main>
-        {/* Full-Screen Architectural Hero Section */}
-        <HeroSection onOpenConsultation={() => handleOpenConsultation()} />
+        {/* 2. Hero Section */}
+        <HeroSection onOpenAppointmentModal={() => handleOpenBookingModal()} />
 
-        {/* Trust Indicators Bar */}
-        <TrustBar />
+        {/* 3. About the Clinic */}
+        <AboutSection />
 
-        {/* About Haridass Construction */}
-        <AboutSection onOpenConsultation={() => handleOpenConsultation()} />
+        {/* 4. Doctors / Dental Specialists */}
+        <DoctorsSection onSelectDoctor={handleDoctorSelected} />
 
-        {/* Core Construction Services */}
-        <ServicesSection onSelectService={(service) => handleOpenConsultation(service)} />
+        {/* 5. Dental Services (Interactive modal) */}
+        <ServicesSection onSelectService={handleServiceSelected} />
 
-        {/* Portfolio & Project Gallery */}
-        <ProjectGallery
-          onOpenLightbox={handleOpenLightbox}
-          onOpenConsultation={() => handleOpenConsultation()}
-        />
+        {/* 6. Interactive Post-Treatment Care (Extremely Important Section) */}
+        <PostCareSection onOpenAppointment={() => handleOpenBookingModal()} />
 
-        {/* Why Choose Haridass Construction */}
+        {/* 7. Why Choose Us */}
         <WhyChooseUs />
 
-        {/* Real Customer Reviews from Google */}
-        <ReviewsSection />
+        {/* 8. Clinic Gallery (Responsive grid with Lightbox) */}
+        <GallerySection />
 
-        {/* 4-Step Construction Process */}
-        <ProcessSection onOpenConsultation={() => handleOpenConsultation()} />
-
-        {/* Interactive Construction Cost Estimator */}
-        <CostEstimator onOpenConsultation={() => handleOpenConsultation()} />
-
-        {/* Location & Service Area Map */}
+        {/* 9 & 10. Location / Google Maps & Opening Hours */}
         <LocationSection />
 
-        {/* Contact & Conversion Section */}
-        <ContactSection onOpenConsultation={() => handleOpenConsultation()} />
+        {/* 11. Appointment Booking Form Section */}
+        <AppointmentSection
+          initialDoctor={selectedDoctor}
+          initialService={selectedService}
+        />
       </main>
 
-      {/* Footer */}
-      <Footer />
+      {/* 14. Footer */}
+      <Footer onOpenAppointmentModal={() => handleOpenBookingModal()} />
 
-      {/* Floating Action Conversion Bar */}
-      <FloatingContactBar onOpenConsultation={() => handleOpenConsultation()} />
+      {/* 12. Floating Interactive Assistant Chatbot (Bottom-Right) */}
+      <ChatWidget onOpenBooking={() => handleOpenBookingModal()} />
 
-      {/* Interactive Consultation Request Modal */}
-      <ConsultationModal
-        isOpen={isConsultationOpen}
-        onClose={() => setIsConsultationOpen(false)}
-        initialService={selectedService}
+      {/* 13. Floating Call & WhatsApp Buttons (Bottom-Left) */}
+      <FloatingActions />
+
+      {/* Global Interactive Booking Modal */}
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        preselectedDoctor={selectedDoctor}
+        preselectedService={selectedService}
       />
 
-      {/* Project Lightbox Modal */}
-      <ProjectLightbox
-        project={selectedProject}
-        projects={PROJECTS}
-        isOpen={isLightboxOpen}
-        onClose={handleCloseLightbox}
-        onSelectProject={(p) => setSelectedProject(p)}
-        onInquire={(projName) => handleOpenConsultation(`Inquiry for ${projName}`)}
-      />
     </div>
   );
 }
