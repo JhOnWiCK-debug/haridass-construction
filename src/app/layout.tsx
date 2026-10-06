@@ -1,7 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { CLINIC_INFO } from "@/data/clinicInfo";
+import { VETRI_DATA } from "@/data/vetriData";
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -11,44 +18,44 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#16a34a",
+  themeColor: "#0f4c3a",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jakshsdentaljunction.com"),
-  title: "Jaksh's Dental Junction | Dental Care in Mogappair East, Chennai",
+  metadataBase: new URL("https://vetripethospital.com"),
+  title: "Vetri Pet Hospital & Pet Clinic | Veterinary Care in Perungudi, Chennai",
   description:
-    "Jaksh's Dental Junction is a premier women-owned dental clinic on Valayapathi Salai, Mogappair East, Chennai, led by Dr. Krishnapriya G (Rotary Endodontist with 12 years clinical practice). Specialist dental care where dentistry and kindness meet.",
+    "Compassionate veterinary treatment and ongoing support for pets in Perungudi, Chennai. General consultations, preventive care, vaccinations, supportive therapy & senior pet care. Open daily until 9 PM.",
   keywords: [
-    "Jaksh's Dental Junction",
-    "Dentist in Mogappair East",
-    "Dental clinic in Mogappair",
-    "Dentist in Chennai",
-    "Dental care in Mogappair East",
-    "Dr Krishnapriya G",
-    "Root canal specialist Mogappair",
-    "Orthodontist Mogappair",
-    "Dental implants Chennai",
-    "Women owned dental clinic Chennai",
-    "Dentist Valayapathi Salai",
+    "Vetri Pet Hospital",
+    "Vetri Pet Clinic",
+    "Veterinary clinic Perungudi",
+    "Pet hospital Perungudi",
+    "Veterinary hospital Perungudi Chennai",
+    "Pet doctor Perungudi",
+    "Veterinary clinic Chennai",
+    "Pet hospital near Perungudi",
+    "Dr Sandhiya S veterinarian",
+    "Dr Ramu veterinarian",
+    "Pet clinic Erikarai St Kurinji Nagar",
   ],
-  authors: [{ name: "Jaksh's Dental Junction" }, { name: "Dr. Krishnapriya G" }],
+  authors: [{ name: "Vetri Pet Hospital & Pet Clinic" }],
   openGraph: {
-    title: "Jaksh's Dental Junction | Dental Care in Mogappair East, Chennai",
+    title: "Vetri Pet Hospital & Pet Clinic | Professional Treatment. Personal Care.",
     description:
-      "Professional, gentle dental care in Mogappair East, Chennai. Led by Dr. Krishnapriya G with a team of specialist consultant doctors. Where dentistry and kindness meet.",
+      "Compassionate veterinary treatment and ongoing support for pets in Perungudi, Chennai. 5.0 ★ Google Rating.",
     type: "website",
     locale: "en_IN",
-    siteName: "Jaksh's Dental Junction",
+    siteName: "Vetri Pet Hospital & Pet Clinic",
     images: [
       {
-        url: "/images/dental/clinic-exterior-sign.jpg",
+        url: "/images/vetri/hero-vet-care.jpg",
         width: 1200,
         height: 630,
-        alt: "Jaksh's Dental Junction - Mogappair East, Chennai",
+        alt: "Vetri Pet Hospital & Pet Clinic - Perungudi, Chennai",
       },
     ],
   },
@@ -65,32 +72,26 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Dentist",
-    name: CLINIC_INFO.name,
+    "@type": "VeterinaryCare",
+    name: VETRI_DATA.name,
     description:
-      "Jaksh's Dental Junction is a patient-centric, women-owned dental clinic in Mogappair East, Chennai, founded by Rotary Endodontist Dr. Krishnapriya G. Providing specialist root canals, implants, orthodontics, restorations, and preventive care.",
-    telephone: CLINIC_INFO.phoneDisplay,
-    url: "https://jakshsdentaljunction.com",
-    image: "/images/dental/clinic-exterior-sign.jpg",
-    founder: {
-      "@type": "Person",
-      name: "Dr. Krishnapriya G",
-      jobTitle: "Founder & Chief Dentist",
-      honorificPrefix: "Dr.",
-      award: "Anbu Maruthuvar Awardee",
-    },
+      "Vetri Pet Hospital & Pet Clinic provides compassionate veterinary treatment, preventive wellness, and supportive care for dogs, cats, and pets in Perungudi, Chennai.",
+    telephone: VETRI_DATA.phoneFormatted,
+    url: "https://vetripethospital.com",
+    image: "/images/vetri/hero-vet-care.jpg",
+    priceRange: "₹₹",
     address: {
       "@type": "PostalAddress",
-      streetAddress: CLINIC_INFO.address.street,
-      addressLocality: CLINIC_INFO.address.area,
-      addressRegion: CLINIC_INFO.address.state,
-      postalCode: CLINIC_INFO.address.pincode,
+      streetAddress: VETRI_DATA.address.line1,
+      addressLocality: VETRI_DATA.address.area,
+      addressRegion: VETRI_DATA.address.state,
+      postalCode: VETRI_DATA.address.pincode,
       addressCountry: "IN",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 13.0888998,
-      longitude: 80.1764654,
+      latitude: 12.9654,
+      longitude: 80.2464,
     },
     openingHoursSpecification: [
       {
@@ -102,30 +103,35 @@ export default function RootLayout({
           "Thursday",
           "Friday",
           "Saturday",
+          "Sunday",
         ],
-        opens: "17:00",
-        closes: "20:30",
+        opens: "09:00",
+        closes: "21:00",
       },
     ],
-    priceRange: "$$",
-    paymentAccepted: "Cash, UPI, Credit Card, Debit Card",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "6",
+    },
+    employee: [
+      {
+        "@type": "Person",
+        name: "Dr. Sandhiya. S",
+        jobTitle: "Veterinary Physician & Surgeon",
+      },
+      {
+        "@type": "Person",
+        name: "Dr. Ramu",
+        jobTitle: "Veterinary Physician",
+      },
+    ],
     areaServed: [
-      {
-        "@type": "City",
-        name: "Chennai",
-      },
-      {
-        "@type": "AdministrativeArea",
-        name: "Mogappair East",
-      },
-      {
-        "@type": "AdministrativeArea",
-        name: "Mogappair West",
-      },
-      {
-        "@type": "AdministrativeArea",
-        name: "Anna Nagar",
-      },
+      { "@type": "AdministrativeArea", name: "Perungudi" },
+      { "@type": "AdministrativeArea", name: "Kurinji Nagar" },
+      { "@type": "AdministrativeArea", name: "Kandanchavadi" },
+      { "@type": "AdministrativeArea", name: "Thoraipakkam" },
+      { "@type": "City", name: "Chennai" },
     ],
   };
 
@@ -138,7 +144,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${jakarta.variable} font-sans bg-[#fbfdfb] text-slate-800 min-h-screen antialiased`}
+        className={`${cormorant.variable} ${jakarta.variable} font-sans bg-[#faf8f5] text-[#11161b] min-h-screen antialiased`}
       >
         {children}
       </body>

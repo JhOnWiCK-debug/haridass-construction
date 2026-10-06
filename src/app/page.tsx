@@ -1,97 +1,101 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/layout/Navbar";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { AboutSection } from "@/components/sections/AboutSection";
-import { DoctorsSection } from "@/components/sections/DoctorsSection";
-import { ServicesSection } from "@/components/sections/ServicesSection";
-import { PostCareSection } from "@/components/sections/PostCareSection";
-import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
-import { GallerySection } from "@/components/sections/GallerySection";
-import { LocationSection } from "@/components/sections/LocationSection";
-import { AppointmentSection } from "@/components/sections/AppointmentSection";
-import { Footer } from "@/components/layout/Footer";
-import { ChatWidget } from "@/components/ui/ChatWidget";
-import { FloatingActions } from "@/components/ui/FloatingActions";
-import { BookingModal } from "@/components/ui/BookingModal";
+import { Navbar } from "@/components/vetri/Navbar";
+import { Hero } from "@/components/vetri/Hero";
+import { TrustStrip } from "@/components/vetri/TrustStrip";
+import { EmotionalBrandStatement } from "@/components/vetri/EmotionalBrandStatement";
+import { TreatmentFirstSection } from "@/components/vetri/TreatmentFirstSection";
+import { ServicesSection } from "@/components/vetri/ServicesSection";
+import { PatientStorySection } from "@/components/vetri/PatientStorySection";
+import { ReviewsSection } from "@/components/vetri/ReviewsSection";
+import { OurApproachSection } from "@/components/vetri/OurApproachSection";
+import { ClinicTourSection } from "@/components/vetri/ClinicTourSection";
+import { AppointmentExperience } from "@/components/vetri/AppointmentExperience";
+import { LocationAndMapsSection } from "@/components/vetri/LocationAndMapsSection";
+import { PetCareToolsSection } from "@/components/vetri/PetCareToolsSection";
+import { ContactSection } from "@/components/vetri/ContactSection";
+import { FinalCta } from "@/components/vetri/FinalCta";
+import { Footer } from "@/components/vetri/Footer";
+import { MobileActionBar } from "@/components/vetri/MobileActionBar";
+import { AiPetAssistant } from "@/components/vetri/AiPetAssistant";
+import { AppointmentModal } from "@/components/vetri/AppointmentModal";
 
-export default function HomePage() {
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [selectedDoctor, setSelectedDoctor] = useState("");
-  const [selectedService, setSelectedService] = useState("");
+export default function Home() {
+  const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
 
-  const handleOpenBookingModal = (doctor = "", service = "") => {
-    setSelectedDoctor(doctor);
-    setSelectedService(service);
-    setIsBookingModalOpen(true);
+  const handleOpenAppointment = () => {
+    setAppointmentModalOpen(true);
   };
 
-  const handleDoctorSelected = (doctorName: string) => {
-    setSelectedDoctor(doctorName);
-    setIsBookingModalOpen(true);
-  };
-
-  const handleServiceSelected = (serviceName: string) => {
-    setSelectedService(serviceName);
-    setIsBookingModalOpen(true);
+  const handleCloseAppointment = () => {
+    setAppointmentModalOpen(false);
   };
 
   return (
-    <div className="min-h-screen bg-[#fbfdfb] text-slate-800 font-sans antialiased selection:bg-emerald-200 selection:text-emerald-950">
-      
-      {/* 1. Header / Sticky Navigation */}
-      <Navbar onOpenAppointmentModal={() => handleOpenBookingModal()} />
+    <div id="top" className="min-h-screen bg-[#faf8f5] text-[#11161b] flex flex-col selection:bg-[#0f4c3a] selection:text-white">
+      {/* 1. Sticky Navigation */}
+      <Navbar onOpenAppointment={handleOpenAppointment} />
 
-      <main>
+      {/* Main Content Area */}
+      <main className="flex-1">
         {/* 2. Hero Section */}
-        <HeroSection onOpenAppointmentModal={() => handleOpenBookingModal()} />
+        <Hero onOpenAppointment={handleOpenAppointment} />
 
-        {/* 3. About the Clinic */}
-        <AboutSection />
+        {/* 3. Hero Trust Strip */}
+        <TrustStrip />
 
-        {/* 4. Doctors / Dental Specialists */}
-        <DoctorsSection onSelectDoctor={handleDoctorSelected} />
+        {/* 4. Section 2 — Emotional Brand Statement */}
+        <EmotionalBrandStatement />
 
-        {/* 5. Dental Services (Interactive modal) */}
-        <ServicesSection onSelectService={handleServiceSelected} />
+        {/* 5. Section 3 — Treatment-First Positioning */}
+        <TreatmentFirstSection />
 
-        {/* 6. Interactive Post-Treatment Care (Extremely Important Section) */}
-        <PostCareSection onOpenAppointment={() => handleOpenBookingModal()} />
+        {/* 6. Section 4 — Services */}
+        <ServicesSection onOpenAppointment={handleOpenAppointment} />
 
-        {/* 7. Why Choose Us */}
-        <WhyChooseUs />
+        {/* 7. Section 5 — Real Patient Story (Simba) */}
+        <PatientStorySection onOpenAppointment={handleOpenAppointment} />
 
-        {/* 8. Clinic Gallery (Responsive grid with Lightbox) */}
-        <GallerySection />
+        {/* 8. Section 6 — Customer Reviews */}
+        <ReviewsSection />
 
-        {/* 9 & 10. Location / Google Maps & Opening Hours */}
-        <LocationSection />
+        {/* 9. Section 7 — Our Approach */}
+        <OurApproachSection />
 
-        {/* 11. Appointment Booking Form Section */}
-        <AppointmentSection
-          initialDoctor={selectedDoctor}
-          initialService={selectedService}
-        />
+        {/* 10. Authentic Practice Tour (Real Photos & Doctors) */}
+        <ClinicTourSection />
+
+        {/* 11. Section 8 & 9 — Appointment Experience & WhatsApp Leads */}
+        <AppointmentExperience />
+
+        {/* 12. Section 10 & 11 — Google Maps & "Near You" Local Section */}
+        <LocationAndMapsSection />
+
+        {/* 13. Section 12 — Pet Care Tools (Vaccine, Profile, Guide, Emergency) */}
+        <PetCareToolsSection />
+
+        {/* 14. Section 14 — Minimal Contact Section */}
+        <ContactSection />
+
+        {/* 15. Final Dark Emotional CTA */}
+        <FinalCta onOpenAppointment={handleOpenAppointment} />
       </main>
 
-      {/* 14. Footer */}
-      <Footer onOpenAppointmentModal={() => handleOpenBookingModal()} />
+      {/* 16. Footer */}
+      <Footer />
 
-      {/* 12. Floating Interactive Assistant Chatbot (Bottom-Right) */}
-      <ChatWidget onOpenBooking={() => handleOpenBookingModal()} />
+      {/* 17. Persistent Mobile Bottom Action Bar */}
+      <MobileActionBar onOpenAppointment={handleOpenAppointment} />
 
-      {/* 13. Floating Call & WhatsApp Buttons (Bottom-Left) */}
-      <FloatingActions />
+      {/* 18. Subtle Floating AI Pet Assistant */}
+      <AiPetAssistant onOpenAppointment={handleOpenAppointment} />
 
-      {/* Global Interactive Booking Modal */}
-      <BookingModal
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-        preselectedDoctor={selectedDoctor}
-        preselectedService={selectedService}
+      {/* 19. Global Interactive Appointment Modal */}
+      <AppointmentModal
+        isOpen={appointmentModalOpen}
+        onClose={handleCloseAppointment}
       />
-
     </div>
   );
 }
