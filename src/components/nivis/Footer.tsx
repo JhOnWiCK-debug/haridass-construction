@@ -10,7 +10,6 @@ import {
   Clock,
   Heart,
   Navigation,
-  Download,
   ShieldCheck,
 } from "lucide-react";
 

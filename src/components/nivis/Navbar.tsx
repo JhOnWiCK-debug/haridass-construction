@@ -8,7 +8,6 @@ import {
   Calendar,
   Menu,
   X,
-  Download,
   MapPin,
   Heart,
   ShoppingBag,
