@@ -3,28 +3,28 @@
 :root {
   --color-background: #F8F6F0;
   --color-surface: #FFFDF9;
-  --color-sage: #B8C7B2;
-  --color-sage-light: #E7EDE3;
-  --color-sage-pale: #F0F3EC;
+  --color-sage: #B8CBB8;
+  --color-sage-pale: #E7EEE4;
+  --color-sage-muted: #A9C0A7;
   --color-forest: #29483A;
-  --color-forest-dark: #1E332A;
-  --color-text: #29342D;
+  --color-forest-dark: #203B2F;
+  --color-text: #344139;
   --color-muted: #737B73;
-  --color-border: #E2E4DA;
+  --color-border: #DCE5D8;
   --color-white: #FFFFFF;
 }
 
 @theme {
   --color-ivory: #F8F6F0;
   --color-surface: #FFFDF9;
-  --color-sage: #B8C7B2;
-  --color-sage-light: #E7EDE3;
-  --color-sage-pale: #F0F3EC;
+  --color-sage: #B8CBB8;
+  --color-sage-pale: #E7EEE4;
+  --color-sage-muted: #A9C0A7;
   --color-forest: #29483A;
-  --color-forest-dark: #1E332A;
-  --color-clinic-text: #29342D;
+  --color-forest-dark: #203B2F;
+  --color-clinic-text: #344139;
   --color-clinic-muted: #737B73;
-  --color-clinic-border: #E2E4DA;
+  --color-clinic-border: #DCE5D8;
   --font-serif: var(--font-cormorant), Georgia, serif;
   --font-sans: var(--font-dmsans), system-ui, sans-serif;
 }
@@ -45,13 +45,13 @@ body {
   font-family: var(--font-dmsans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  selection-background-color: #E7EDE3;
-  selection-color: #1E332A;
+  selection-background-color: #E7EEE4;
+  selection-color: #203B2F;
 }
 
 ::selection {
-  background: #E7EDE3;
-  color: #1E332A;
+  background: #E7EEE4;
+  color: #203B2F;
 }
 
 /* Editorial Serif Headings */
@@ -69,7 +69,7 @@ body {
   background: #F8F6F0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #B8C7B2;
+  background: #B8CBB8;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -78,18 +78,18 @@ body {
 
 /* Editorial hairline borders */
 .border-subtle {
-  border-color: #E2E4DA;
+  border-color: #DCE5D8;
 }
 
 /* Subtle card styling — warm, calm, restrained */
 .editorial-card {
   background-color: #FFFDF9;
-  border: 1px solid #E2E4DA;
+  border: 1px solid #DCE5D8;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .editorial-card:hover {
-  border-color: #B8C7B2;
+  border-color: #A9C0A7;
   box-shadow: 0 8px 24px -6px rgba(41, 72, 58, 0.06);
 }
 
@@ -101,18 +101,18 @@ body {
 }
 
 .btn-forest:hover {
-  background-color: #1E332A;
+  background-color: #203B2F;
 }
 
 .btn-outline-forest {
   background-color: transparent;
   color: #29483A;
-  border: 1px solid #B8C7B2;
+  border: 1px solid #B8CBB8;
   transition: all 0.25s ease;
 }
 
 .btn-outline-forest:hover {
-  background-color: #F0F3EC;
+  background-color: #E7EEE4;
   border-color: #29483A;
 }
 

@@ -64,8 +64,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? "bg-[#FFFDF9]/95 backdrop-blur-md border-b border-[#E2E4DA] py-3.5 shadow-xs"
-            : "bg-[#F8F6F0]/90 backdrop-blur-xs border-b border-[#E2E4DA]/60 py-4"
+            ? "bg-[#FFFDF9]/95 backdrop-blur-md border-b border-[#DCE5D8] py-3.5 shadow-xs"
+            : "bg-[#F8F6F0]/90 backdrop-blur-xs border-b border-[#DCE5D8]/60 py-4"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -169,9 +169,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
             onClick={() => setIsMobileMenuOpen(false)}
           />
 
-          <div className="fixed inset-y-0 right-0 max-w-xs w-full bg-[#FFFDF9] shadow-xl p-6 flex flex-col justify-between overflow-y-auto border-l border-[#E2E4DA] z-10 animate-in slide-in-from-right duration-200">
+          <div className="fixed inset-y-0 right-0 max-w-xs w-full bg-[#FFFDF9] shadow-xl p-6 flex flex-col justify-between overflow-y-auto border-l border-[#DCE5D8] z-10 animate-in slide-in-from-right duration-200">
             <div>
-              <div className="flex items-center justify-between pb-4 border-b border-[#E2E4DA]">
+              <div className="flex items-center justify-between pb-4 border-b border-[#DCE5D8]">
                 <ClinicLogo size="sm" />
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}

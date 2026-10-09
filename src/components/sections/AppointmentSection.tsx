@@ -85,31 +85,34 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
   };
 
   return (
-    <section id="appointment" className="py-20 lg:py-28 bg-[#F8F6F0] border-b border-[#E2E4DA]/60">
+    <section id="appointment" className="py-20 lg:py-28 bg-[#E7EEE4]/50 border-b border-[#DCE5D8]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#737B73]">
-            Appointment Enquiries
-          </span>
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#1E332A] font-normal tracking-tight mt-2 leading-tight">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E7EEE4] border border-[#B8CBB8] text-xs mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#29483A]" />
+            <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#203B2F]">
+              Appointment Enquiries
+            </span>
+          </div>
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#203B2F] font-normal tracking-tight mt-1 leading-tight">
             Book an appointment.
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[#29342D]/80 leading-relaxed font-normal">
+          <p className="mt-3 text-sm sm:text-base text-[#344139] leading-relaxed font-normal">
             Send an appointment request to our clinic desk. We review available time slots between 5:00 PM and 8:30 PM (Mon–Sat) and coordinate directly with you.
           </p>
         </div>
 
         {/* Form Container */}
-        <div className="bg-[#FFFDF9] rounded-2xl p-6 sm:p-10 border border-[#E2E4DA] shadow-xs">
+        <div className="bg-[#FFFDF9] rounded-3xl p-6 sm:p-10 border border-[#DCE5D8] shadow-xs">
           {submitted ? (
             <div className="text-center py-8 space-y-5 animate-in zoom-in-95 duration-200">
-              <div className="w-12 h-12 rounded-full bg-[#E7EDE3] text-[#29483A] mx-auto flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-[#E7EEE4] border border-[#B8CBB8] text-[#203B2F] mx-auto flex items-center justify-center">
                 <CheckCircle2 className="w-7 h-7" />
               </div>
               <div className="space-y-1">
-                <h3 className="font-editorial text-2xl text-[#1E332A] font-normal">
+                <h3 className="font-editorial text-2xl text-[#203B2F] font-normal">
                   Appointment Request Ready
                 </h3>
                 <p className="text-xs sm:text-sm text-[#737B73] max-w-md mx-auto leading-relaxed">
@@ -120,7 +123,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
                 <button
                   onClick={handleSendWhatsApp}
-                  className="w-full sm:w-auto px-6 py-3 rounded-lg text-xs font-medium text-white bg-[#29483A] hover:bg-[#1E332A] transition-all flex items-center justify-center gap-2 shadow-xs"
+                  className="w-full sm:w-auto px-6 py-3 rounded-lg text-xs font-medium text-white bg-[#29483A] hover:bg-[#203B2F] transition-all flex items-center justify-center gap-2 shadow-xs"
                 >
                   <MessageSquare className="w-4 h-4" />
                   Send Request via WhatsApp
@@ -128,9 +131,9 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
 
                 <a
                   href={CLINIC_INFO.phone}
-                  className="w-full sm:w-auto px-5 py-3 rounded-lg text-xs font-medium text-[#29483A] bg-[#F8F6F0] hover:bg-[#F0F3EC] border border-[#E2E4DA] flex items-center justify-center gap-2 transition-colors"
+                  className="w-full sm:w-auto px-5 py-3 rounded-lg text-xs font-medium text-[#203B2F] bg-[#E7EEE4] hover:bg-[#B8CBB8]/40 border border-[#DCE5D8] flex items-center justify-center gap-2 transition-colors"
                 >
-                  <Phone className="w-3.5 h-3.5" />
+                  <Phone className="w-3.5 h-3.5 text-[#29483A]" />
                   Call Clinic Directly
                 </a>
               </div>
@@ -138,7 +141,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
               <div className="pt-4">
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="text-xs text-[#737B73] hover:text-[#29483A] underline"
+                  className="text-xs text-[#737B73] hover:text-[#203B2F] underline"
                 >
                   ← Edit details or submit another enquiry
                 </button>
@@ -161,7 +164,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className={`w-full pl-9 pr-3.5 py-2 rounded-lg border text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] placeholder:text-[#737B73]/60 focus:outline-none focus:ring-1 focus:ring-[#29483A] ${
-                        errors.name ? "border-[#8F3E37]" : "border-[#E2E4DA]"
+                        errors.name ? "border-[#8F3E37]" : "border-[#DCE5D8]"
                       }`}
                     />
                   </div>
@@ -183,7 +186,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className={`w-full pl-9 pr-3.5 py-2 rounded-lg border text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] placeholder:text-[#737B73]/60 focus:outline-none focus:ring-1 focus:ring-[#29483A] ${
-                        errors.phone ? "border-[#8F3E37]" : "border-[#E2E4DA]"
+                        errors.phone ? "border-[#8F3E37]" : "border-[#DCE5D8]"
                       }`}
                     />
                   </div>
@@ -205,7 +208,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                     placeholder="patient@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full pl-9 pr-3.5 py-2 rounded-lg border border-[#E2E4DA] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] placeholder:text-[#737B73]/60 focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+                    className="w-full pl-9 pr-3.5 py-2 rounded-lg border border-[#DCE5D8] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] placeholder:text-[#737B73]/60 focus:outline-none focus:ring-1 focus:ring-[#29483A]"
                   />
                 </div>
               </div>
@@ -221,7 +224,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                     className={`w-full px-3 py-2 rounded-lg border text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A] ${
-                      errors.date ? "border-[#8F3E37]" : "border-[#E2E4DA]"
+                      errors.date ? "border-[#8F3E37]" : "border-[#DCE5D8]"
                     }`}
                   />
                   {errors.date && (
@@ -237,7 +240,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                   <select
                     value={formData.time}
                     onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E2E4DA] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+                    className="w-full px-3 py-2 rounded-lg border border-[#DCE5D8] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
                   >
                     {timeSlots.map((slot) => (
                       <option key={slot} value={slot}>
@@ -256,7 +259,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                 <select
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-[#E2E4DA] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+                  className="w-full px-3 py-2 rounded-lg border border-[#DCE5D8] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
                 >
                   <option value="General Dental Consultation">General Dental Consultation</option>
                   {DENTAL_SERVICES.map((srv) => (
@@ -278,7 +281,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                   placeholder="Tell us about any specific discomfort, duration of symptoms, or questions..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-3.5 py-2 rounded-lg border border-[#E2E4DA] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] placeholder:text-[#737B73]/60 focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+                  className="w-full px-3.5 py-2 rounded-lg border border-[#DCE5D8] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] placeholder:text-[#737B73]/60 focus:outline-none focus:ring-1 focus:ring-[#29483A]"
                 />
               </div>
 
@@ -286,7 +289,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
               <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
                 <button
                   type="submit"
-                  className="w-full sm:flex-1 py-3 px-6 rounded-lg text-xs sm:text-sm font-medium tracking-wide text-white bg-[#29483A] hover:bg-[#1E332A] transition-all flex items-center justify-center gap-2"
+                  className="w-full sm:flex-1 py-3 px-6 rounded-lg text-xs sm:text-sm font-medium tracking-wide text-white bg-[#29483A] hover:bg-[#203B2F] transition-all flex items-center justify-center gap-2 shadow-xs"
                 >
                   <Send className="w-3.5 h-3.5" />
                   Submit Appointment Request
@@ -295,9 +298,9 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                 <button
                   type="button"
                   onClick={handleSendWhatsApp}
-                  className="w-full sm:w-auto py-3 px-5 rounded-lg text-xs sm:text-sm font-medium text-[#29483A] bg-[#F0F3EC] hover:bg-[#E7EDE3] border border-[#E2E4DA] flex items-center justify-center gap-2 transition-colors"
+                  className="w-full sm:w-auto py-3 px-5 rounded-lg text-xs sm:text-sm font-medium text-[#203B2F] bg-[#E7EEE4] hover:bg-[#B8CBB8]/40 border border-[#DCE5D8] flex items-center justify-center gap-2 transition-colors"
                 >
-                  <MessageSquare className="w-3.5 h-3.5" />
+                  <MessageSquare className="w-3.5 h-3.5 text-[#29483A]" />
                   Direct WhatsApp Enquiry
                 </button>
               </div>

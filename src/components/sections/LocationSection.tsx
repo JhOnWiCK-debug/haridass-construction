@@ -86,18 +86,21 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-[#FFFDF9] border-b border-[#E2E4DA]/60">
+    <section id="contact" className="py-20 lg:py-28 bg-[#FFFDF9] border-b border-[#DCE5D8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-3xl mb-14">
-          <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#737B73]">
-            Location & Timings
-          </span>
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#1E332A] font-normal tracking-tight mt-2 leading-tight">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E7EEE4] border border-[#B8CBB8] text-xs mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#29483A]" />
+            <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#203B2F]">
+              Location & Timings
+            </span>
+          </div>
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#203B2F] font-normal tracking-tight mt-1 leading-tight">
             Find our clinic in Mogappair East.
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[#29342D]/80 leading-relaxed font-normal">
+          <p className="mt-3 text-sm sm:text-base text-[#344139] leading-relaxed font-normal">
             Accessible on Valayapathi Salai (6th Block). Dedicated evening hours suited for families, students, and working professionals.
           </p>
         </div>
@@ -107,7 +110,7 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
           
           {/* Interactive Google Map */}
           <div className="lg:col-span-7 flex flex-col">
-            <div className="relative w-full h-80 sm:h-96 lg:h-full min-h-[380px] rounded-2xl overflow-hidden border border-[#E2E4DA] bg-[#F8F6F0]">
+            <div className="relative w-full h-80 sm:h-96 lg:h-full min-h-[380px] rounded-2xl overflow-hidden border border-[#DCE5D8] bg-[#F8F6F0]">
               <iframe
                 title="Jaksh's Dental Junction Mogappair East Google Map"
                 src={CLINIC_INFO.googleMapsEmbedUrl}
@@ -121,7 +124,7 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
               />
 
               {/* Floating Map Helper Badge */}
-              <div className="absolute top-4 left-4 bg-[#FFFDF9]/95 backdrop-blur-xs p-3 rounded-lg border border-[#E2E4DA] max-w-xs shadow-xs pointer-events-none">
+              <div className="absolute top-4 left-4 bg-[#FFFDF9]/95 backdrop-blur-xs p-3 rounded-lg border border-[#DCE5D8] max-w-xs shadow-xs pointer-events-none">
                 <p className="text-xs font-medium text-[#1E332A]">
                   Jaksh&apos;s Dental Junction
                 </p>
@@ -136,7 +139,7 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
                   href={CLINIC_INFO.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FFFDF9] text-[#29483A] text-xs font-medium border border-[#E2E4DA] shadow-xs hover:bg-[#F0F3EC]"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FFFDF9] text-[#29483A] text-xs font-medium border border-[#DCE5D8] shadow-xs hover:bg-[#F0F3EC]"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   Open in Google Maps
@@ -149,8 +152,8 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
           <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
             
             {/* Address Details */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-[#F8F6F0] border border-[#E2E4DA] space-y-5">
-              <div className="flex items-center justify-between pb-3 border-b border-[#E2E4DA]">
+            <div className="p-6 sm:p-7 rounded-2xl bg-[#F8F6F0] border border-[#DCE5D8] space-y-5">
+              <div className="flex items-center justify-between pb-3 border-b border-[#DCE5D8]">
                 <h3 className="font-editorial text-2xl text-[#1E332A] font-normal">
                   Clinic Details
                 </h3>
@@ -216,7 +219,7 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
 
                 <a
                   href={CLINIC_INFO.phone}
-                  className="px-4 py-2.5 rounded-lg text-xs font-medium text-[#29483A] bg-[#FFFDF9] hover:bg-[#F0F3EC] border border-[#E2E4DA] text-center flex items-center justify-center gap-1.5 transition-colors"
+                  className="px-4 py-2.5 rounded-lg text-xs font-medium text-[#29483A] bg-[#FFFDF9] hover:bg-[#F0F3EC] border border-[#DCE5D8] text-center flex items-center justify-center gap-1.5 transition-colors"
                 >
                   <Phone className="w-3.5 h-3.5" />
                   Call Clinic
@@ -225,8 +228,8 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
             </div>
 
             {/* Opening Hours Schedule Card */}
-            <div className="p-6 rounded-2xl bg-[#FFFDF9] border border-[#E2E4DA] space-y-3">
-              <div className="flex items-center justify-between pb-2.5 border-b border-[#E2E4DA]">
+            <div className="p-6 rounded-2xl bg-[#FFFDF9] border border-[#DCE5D8] space-y-3">
+              <div className="flex items-center justify-between pb-2.5 border-b border-[#DCE5D8]">
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-[#29483A]" />
                   <h4 className="text-xs font-medium uppercase tracking-wider text-[#1E332A]">

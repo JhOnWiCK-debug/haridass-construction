@@ -46,10 +46,10 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({
       />
 
       {/* Editorial Modal Card */}
-      <div className="relative w-full max-w-2xl bg-[#FFFDF9] rounded-xl shadow-xl border border-[#E2E4DA] overflow-hidden z-10 max-h-[90vh] flex flex-col my-auto animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-2xl bg-[#FFFDF9] rounded-xl shadow-xl border border-[#DCE5D8] overflow-hidden z-10 max-h-[90vh] flex flex-col my-auto animate-in zoom-in-95 duration-200">
         
         {/* Header */}
-        <div className="p-6 sm:p-7 bg-[#F8F6F0] border-b border-[#E2E4DA] flex items-start justify-between gap-4 sticky top-0 z-20">
+        <div className="p-6 sm:p-7 bg-[#F8F6F0] border-b border-[#DCE5D8] flex items-start justify-between gap-4 sticky top-0 z-20">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
               <span className="text-[10px] font-mono font-medium text-[#737B73] bg-[#E7EDE3] px-2 py-0.5 rounded">
@@ -87,7 +87,7 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({
             <h4 className="text-xs uppercase tracking-wider font-medium text-[#29483A]">
               Treatment Overview
             </h4>
-            <p className="leading-relaxed bg-[#F8F6F0] p-4 rounded-lg border border-[#E2E4DA]/60">
+            <p className="leading-relaxed bg-[#F8F6F0] p-4 rounded-lg border border-[#DCE5D8]/60">
               {service.fullDescription}
             </p>
           </div>
@@ -124,7 +124,7 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({
 
           {/* Preparation & Aftercare */}
           <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-4 rounded-lg bg-[#F0F3EC] border border-[#E2E4DA]">
+            <div className="p-4 rounded-lg bg-[#F0F3EC] border border-[#DCE5D8]">
               <h5 className="text-[11px] font-medium uppercase tracking-wider text-[#29483A] mb-2">
                 Preparation Guidance
               </h5>
@@ -138,7 +138,7 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({
               </ul>
             </div>
 
-            <div className="p-4 rounded-lg bg-[#F8F6F0] border border-[#E2E4DA]">
+            <div className="p-4 rounded-lg bg-[#F8F6F0] border border-[#DCE5D8]">
               <h5 className="text-[11px] font-medium uppercase tracking-wider text-[#29483A] mb-2">
                 Aftercare Expectations
               </h5>
@@ -161,7 +161,7 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="p-5 sm:p-6 bg-[#F8F6F0] border-t border-[#E2E4DA] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="p-5 sm:p-6 bg-[#F8F6F0] border-t border-[#DCE5D8] flex flex-col sm:flex-row items-center justify-between gap-3">
           <span className="text-xs text-[#737B73]">
             Consultations: 5:00 PM – 8:30 PM (Mon–Sat)
           </span>

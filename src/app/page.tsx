@@ -16,6 +16,7 @@ import { LocationSection } from "@/components/sections/LocationSection";
 import { AppointmentSection } from "@/components/sections/AppointmentSection";
 import { Footer } from "@/components/layout/Footer";
 import { ChatWidget } from "@/components/ui/ChatWidget";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { BookingModal } from "@/components/ui/BookingModal";
 
 export default function HomePage() {
@@ -28,7 +29,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F6F0] text-[#29342D] font-sans antialiased selection:bg-[#E7EDE3] selection:text-[#1E332A]">
+    <div className="min-h-screen bg-[#F8F6F0] text-[#344139] font-sans antialiased selection:bg-[#E7EEE4] selection:text-[#203B2F]">
       
       {/* 01. Refined Navigation */}
       <Navbar onOpenAppointmentModal={() => handleOpenBookingModal()} />
@@ -71,10 +72,13 @@ export default function HomePage() {
         <AppointmentSection initialService={selectedService} />
       </main>
 
-      {/* 14. Refined Footer */}
+      {/* 14. Refined Footer with Social Media Strip */}
       <Footer onOpenAppointmentModal={() => handleOpenBookingModal()} />
 
-      {/* Discreet, Subordinate Contact Assistant */}
+      {/* Permanent Floating WhatsApp Quick Contact (Bottom-Left) */}
+      <FloatingWhatsApp />
+
+      {/* Discreet, Subordinate Contact Assistant (Bottom-Right) */}
       <ChatWidget onOpenBooking={() => handleOpenBookingModal()} />
 
       {/* Accessible Appointment Enquiry Modal */}

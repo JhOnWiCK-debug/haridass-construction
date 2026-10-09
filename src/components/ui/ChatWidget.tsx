@@ -178,12 +178,12 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onOpenBooking }) => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end">
+    <div className="fixed bottom-5 right-4 sm:right-6 z-40 flex flex-col items-end print:hidden">
       
       {/* Subordinate Assistant Window */}
       {isOpen && (
         <div
-          className="w-[90vw] sm:w-88 bg-[#FFFDF9] rounded-2xl shadow-xl border border-[#E2E4DA] overflow-hidden flex flex-col mb-3 h-[460px] max-h-[75vh] animate-in slide-in-from-bottom-3 duration-200"
+          className="w-[90vw] sm:w-88 bg-[#FFFDF9] rounded-2xl shadow-xl border border-[#DCE5D8] overflow-hidden flex flex-col mb-3 h-[460px] max-h-[75vh] animate-in slide-in-from-bottom-3 duration-200"
           role="region"
           aria-label="Clinic Assistant"
         >
@@ -218,7 +218,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onOpenBooking }) => {
                   className={`max-w-[85%] rounded-lg p-3 whitespace-pre-line leading-relaxed ${
                     msg.sender === "user"
                       ? "bg-[#29483A] text-white"
-                      : "bg-[#FFFDF9] text-[#29342D] border border-[#E2E4DA]"
+                      : "bg-[#FFFDF9] text-[#29342D] border border-[#DCE5D8]"
                   }`}
                 >
                   {msg.text}
@@ -247,19 +247,19 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onOpenBooking }) => {
           {/* Quick Input Form */}
           <form
             onSubmit={handleSendText}
-            className="p-2.5 bg-[#FFFDF9] border-t border-[#E2E4DA] flex items-center gap-2"
+            className="p-2.5 bg-[#FFFDF9] border-t border-[#DCE5D8] flex items-center gap-2"
           >
             <input
               type="text"
               placeholder="Type your question..."
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              className="flex-1 px-3 py-1.5 rounded-md border border-[#E2E4DA] text-xs text-[#29342D] bg-[#F8F6F0] placeholder:text-[#737B73]/60 focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+              className="flex-1 px-3 py-1.5 rounded-md border border-[#DCE5D8] text-xs text-[#29342D] bg-[#F8F6F0] placeholder:text-[#737B73]/60 focus:outline-none focus:ring-1 focus:ring-[#29483A]"
             />
             <button
               type="submit"
               disabled={!inputMessage.trim()}
-              className="p-1.5 rounded-md bg-[#29483A] text-white hover:bg-[#1E332A] disabled:opacity-40 transition-colors"
+              className="p-1.5 rounded-md bg-[#29483A] text-white hover:bg-[#203B2F] disabled:opacity-40 transition-colors"
               aria-label="Send query"
             >
               <Send className="w-3.5 h-3.5" />
@@ -271,10 +271,10 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ onOpenBooking }) => {
       {/* Restrained Floating Trigger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="px-3.5 py-2.5 rounded-full bg-[#29483A] hover:bg-[#1E332A] text-white shadow-md flex items-center gap-2 text-xs font-medium tracking-wide transition-all"
+        className="px-3.5 py-2.5 rounded-full bg-[#29483A] hover:bg-[#203B2F] text-white shadow-md flex items-center gap-2 text-xs font-medium tracking-wide transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#29483A]"
         aria-label="Toggle clinic assistance"
       >
-        <MessageSquare className="w-4 h-4 text-[#E7EDE3]" />
+        <MessageSquare className="w-4 h-4 text-[#E7EEE4]" />
         <span>{isOpen ? "Close" : "Need Assistance?"}</span>
       </button>
 

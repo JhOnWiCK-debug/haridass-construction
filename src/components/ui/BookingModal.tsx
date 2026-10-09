@@ -117,10 +117,10 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
         onClick={onClose}
       />
 
-      <div className="relative w-full max-w-lg bg-[#FFFDF9] rounded-xl shadow-xl border border-[#E2E4DA] overflow-hidden z-10 my-auto animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-lg bg-[#FFFDF9] rounded-xl shadow-xl border border-[#DCE5D8] overflow-hidden z-10 my-auto animate-in zoom-in-95 duration-200">
         
         {/* Header */}
-        <div className="p-6 bg-[#F8F6F0] border-b border-[#E2E4DA] flex items-start justify-between gap-4">
+        <div className="p-6 bg-[#F8F6F0] border-b border-[#DCE5D8] flex items-start justify-between gap-4">
           <div>
             <span className="text-[10px] font-mono uppercase tracking-wider text-[#737B73] bg-[#E7EDE3] px-2 py-0.5 rounded">
               Mogappair East, Chennai
@@ -187,7 +187,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className={`w-full px-3 py-2 rounded-lg border text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A] ${
-                    errors.name ? "border-[#8F3E37]" : "border-[#E2E4DA]"
+                    errors.name ? "border-[#8F3E37]" : "border-[#DCE5D8]"
                   }`}
                 />
                 {errors.name && <p className="text-[11px] text-[#8F3E37] mt-1">{errors.name}</p>}
@@ -204,7 +204,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className={`w-full px-3 py-2 rounded-lg border text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A] ${
-                    errors.phone ? "border-[#8F3E37]" : "border-[#E2E4DA]"
+                    errors.phone ? "border-[#8F3E37]" : "border-[#DCE5D8]"
                   }`}
                 />
                 {errors.phone && <p className="text-[11px] text-[#8F3E37] mt-1">{errors.phone}</p>}
@@ -221,7 +221,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                     className={`w-full px-3 py-2 rounded-lg border text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A] ${
-                      errors.date ? "border-[#8F3E37]" : "border-[#E2E4DA]"
+                      errors.date ? "border-[#8F3E37]" : "border-[#DCE5D8]"
                     }`}
                   />
                   {errors.date && <p className="text-[11px] text-[#8F3E37] mt-1">{errors.date}</p>}
@@ -235,7 +235,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                   <select
                     value={formData.time}
                     onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E2E4DA] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+                    className="w-full px-3 py-2 rounded-lg border border-[#DCE5D8] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
                   >
                     {timeSlots.map((slot) => (
                       <option key={slot} value={slot}>
@@ -254,7 +254,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                 <select
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-[#E2E4DA] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+                  className="w-full px-3 py-2 rounded-lg border border-[#DCE5D8] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
                 >
                   <option value="General Dental Consultation">General Dental Consultation</option>
                   {DENTAL_SERVICES.map((s) => (
@@ -275,7 +275,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                   placeholder="Optional note for the doctor..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-[#E2E4DA] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+                  className="w-full px-3 py-2 rounded-lg border border-[#DCE5D8] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
                 />
               </div>
 
