@@ -2,186 +2,133 @@
 
 import React from "react";
 import Image from "next/image";
-import {
-  Heart,
-  CheckCircle2,
-  MapPin,
-  Clock,
-  Sparkles,
-  Award,
-  Shield,
-  Stethoscope,
-} from "lucide-react";
+import { Check, Heart, Shield, Clock, MapPin } from "lucide-react";
 import { CLINIC_INFO } from "@/data/clinicInfo";
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-20 lg:py-28 bg-white relative">
+    <section id="about" className="py-20 lg:py-28 bg-[#FFFDF9] border-b border-[#E2E4DA]/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-3 border border-emerald-200/60">
-            <Heart className="w-3.5 h-3.5 text-emerald-600" />
-            About Jaksh&apos;s Dental Junction
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Where Dentistry & Kindness Meet
+        <div className="max-w-3xl mb-16">
+          <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#737B73]">
+            About the Practice
+          </span>
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#1E332A] font-normal tracking-tight mt-2 leading-tight">
+            A thoughtful approach to dental care.
           </h2>
-          <p className="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">
-            A welcoming, women-owned dental practice situated in Mogappair East, Chennai. We combine patient-centered care, clinical precision, and gentle treatment to make your dental visits comfortable and anxiety-free.
+          <p className="mt-4 text-[#29342D]/85 text-base sm:text-lg leading-relaxed font-normal">
+            Located on Valayapathi Salai in Mogappair East, Jaksh&apos;s Dental Junction was founded with a singular purpose: to provide dental consultations where patients feel listened to, informed, and genuinely cared for.
           </p>
         </div>
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Editorial Split Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Images Grid */}
+          {/* Left Column: Authentic Dual Photography */}
           <div className="lg:col-span-6 grid grid-cols-2 gap-4">
             <div className="space-y-4">
-              <div className="relative rounded-2xl overflow-hidden aspect-4/5 shadow-md border border-slate-100 group">
+              <div className="relative rounded-2xl overflow-hidden aspect-3/4 border border-[#E2E4DA] bg-[#F8F6F0]">
                 <Image
-                  src="/images/dental/clinic-consultation-desk.jpg"
-                  alt="Doctor consultation desk with dental charts and models"
+                  src="/images/dental/clinic-waiting-lounge.jpg"
+                  alt="Patient reception and waiting lounge at Jaksh's Dental Junction"
                   fill
-                  sizes="(max-width: 768px) 50vw, 30vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold">
-                  Patient Consultation Desk
-                </div>
               </div>
-
-              <div className="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-200/60 text-emerald-950">
-                <span className="text-2xl font-black text-emerald-700 block">12 Years</span>
-                <span className="text-xs font-medium text-emerald-800">
-                  Clinical Practice by Chief Dentist Dr. Krishnapriya G
-                </span>
+              <div className="p-4 rounded-xl bg-[#F0F3EC] border border-[#E2E4DA]">
+                <p className="text-xs font-medium text-[#29483A]">
+                  Welcoming Ambience
+                </p>
+                <p className="text-[11px] text-[#737B73] mt-0.5">
+                  Designed for quiet comfort and reduced treatment apprehension.
+                </p>
               </div>
             </div>
 
-            <div className="space-y-4 pt-6">
-              <div className="p-4 rounded-2xl bg-slate-900 text-white shadow-md">
-                <div className="flex items-center gap-2 mb-2 text-emerald-400 font-bold text-xs uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  Ethos & Care
-                </div>
-                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                  &ldquo;We treat patients as family members with transparent recommendations, gentle hands, and dedicated attention.&rdquo;
+            <div className="space-y-4 pt-8">
+              <div className="p-4 rounded-xl bg-[#FFFDF9] border border-[#E2E4DA]">
+                <p className="text-xs font-medium text-[#29483A]">
+                  Consultation Focus
+                </p>
+                <p className="text-[11px] text-[#737B73] mt-0.5">
+                  Thorough explanation of findings before any clinical decisions.
                 </p>
               </div>
-
-              <div className="relative rounded-2xl overflow-hidden aspect-4/5 shadow-md border border-slate-100 group">
+              <div className="relative rounded-2xl overflow-hidden aspect-3/4 border border-[#E2E4DA] bg-[#F8F6F0]">
                 <Image
-                  src="/images/dental/clinic-entrance.jpg"
-                  alt="Jaksh's Dental Junction clinic entrance at Mogappair East"
+                  src="/images/dental/clinic-consultation-desk.jpg"
+                  alt="Doctor consultation desk with anatomical dental models"
                   fill
-                  sizes="(max-width: 768px) 50vw, 30vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold">
-                  Welcoming Clinic Entrance
-                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Narrative */}
-          <div className="lg:col-span-6 space-y-6">
-            
-            <div className="bg-emerald-50/40 p-6 rounded-3xl border border-emerald-100">
-              <div className="flex items-start gap-4">
-                <div className="relative w-16 h-16 rounded-2xl overflow-hidden bg-emerald-100 shrink-0 border-2 border-emerald-300">
-                  <Image
-                    src="/images/dental/dr-krishnapriya.png"
-                    alt="Dr. Krishnapriya G Founder and Chief Dentist"
-                    fill
-                    sizes="64px"
-                    className="object-cover"
-                  />
-                </div>
+          {/* Right Column: Values & Information */}
+          <div className="lg:col-span-6 space-y-8">
+            <div className="space-y-4 text-sm sm:text-base text-[#29342D]/85 leading-relaxed">
+              <p>
+                We believe that dental health should never feel overwhelming or rushed. From preventive cleanings and pediatric care to specialized endodontics, orthodontics, and restorative rehabilitation, each treatment plan is guided by your long-term health and personal comfort.
+              </p>
+              <p>
+                Our clinic brings together general dental care and consultant specialists across oral surgery, implantology, orthodontics, periodontics, and pediatric dentistry under one roof in Mogappair East.
+              </p>
+            </div>
+
+            {/* Principles List */}
+            <div className="space-y-4 pt-2 border-t border-[#E2E4DA]">
+              <div className="flex items-start gap-3.5">
+                <span className="w-5 h-5 rounded-full bg-[#E7EDE3] text-[#29483A] flex items-center justify-center shrink-0 mt-0.5 text-xs">
+                  ✓
+                </span>
                 <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <h3 className="text-lg font-bold text-slate-900">Dr. Krishnapriya G</h3>
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">
-                      Founder & Chief Dentist
-                    </span>
-                  </div>
-                  <p className="text-xs font-medium text-emerald-700 mb-1">
-                    Rotary Endodontist • 12 Years Clinical Practice • IDA Certified
+                  <h4 className="text-sm font-medium text-[#1E332A]">
+                    Transparent Communication
+                  </h4>
+                  <p className="text-xs text-[#737B73] mt-0.5 leading-relaxed">
+                    We clearly explain your oral conditions, discuss practical alternatives, and provide honest recommendations without pressure.
                   </p>
-                  <p className="text-xs text-slate-600">
-                    Clinical Research Professional • Anbu Maruthuvar Awardee • Chennai
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3.5">
+                <span className="w-5 h-5 rounded-full bg-[#E7EDE3] text-[#29483A] flex items-center justify-center shrink-0 mt-0.5 text-xs">
+                  ✓
+                </span>
+                <div>
+                  <h4 className="text-sm font-medium text-[#1E332A]">
+                    Comfort-Oriented Clinical Environment
+                  </h4>
+                  <p className="text-xs text-[#737B73] mt-0.5 leading-relaxed">
+                    A calm waiting lounge and relaxed operatory designed to ease dental apprehension for children, teens, and adults alike.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3.5">
+                <span className="w-5 h-5 rounded-full bg-[#E7EDE3] text-[#29483A] flex items-center justify-center shrink-0 mt-0.5 text-xs">
+                  ✓
+                </span>
+                <div>
+                  <h4 className="text-sm font-medium text-[#1E332A]">
+                    Dedicated Evening Hours
+                  </h4>
+                  <p className="text-xs text-[#737B73] mt-0.5 leading-relaxed">
+                    Consultations are held Monday through Saturday from 5:00 PM to 8:30 PM, accommodating school, college, and workday commitments.
                   </p>
                 </div>
               </div>
             </div>
 
-            <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
-              Located on Valayapathi Salai in 6th Block, Mogappair East, <strong>Jaksh&apos;s Dental Junction</strong> was established to provide Chennai residents with thorough, compassionate dental solutions under one roof. Our clinic is women-owned and managed with an uncompromising commitment to clinical hygiene and patient well-being.
-            </p>
-
-            {/* Core Values Bullets */}
-            <div className="space-y-3 pt-2">
-              <div className="flex items-start gap-3">
-                <div className="p-1 rounded-full bg-emerald-100 text-emerald-700 shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Patient-Focused Dental Care</h4>
-                  <p className="text-xs sm:text-sm text-slate-500">
-                    We listen carefully to your concerns, explain all findings thoroughly, and formulate treatments tailored to your comfort and health.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="p-1 rounded-full bg-emerald-100 text-emerald-700 shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Comfortable Clinic Environment</h4>
-                  <p className="text-xs sm:text-sm text-slate-500">
-                    A calm, air-conditioned reception lounge, playful friendly interior partitions for children, and pristine clinical operatories.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="p-1 rounded-full bg-emerald-100 text-emerald-700 shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Comprehensive Range of Dental Treatments</h4>
-                  <p className="text-xs sm:text-sm text-slate-500">
-                    From root canals, restorative fillings, and preventive cleanings to implantology, orthodontics, periodontics, and pedodontics.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="p-1 rounded-full bg-emerald-100 text-emerald-700 shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Convenient Mogappair East Location</h4>
-                  <p className="text-xs sm:text-sm text-slate-500">
-                    Valayapathi Salai (Plus Code: 35HP+8F), open Monday to Saturday from 5:00 PM to 8:30 PM for convenient evening visits.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Contact Line */}
-            <div className="pt-4 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-700">
-              <span className="flex items-center gap-1.5 text-emerald-800">
-                <MapPin className="w-4 h-4 text-emerald-600" /> Mogappair East, Chennai 600037
-              </span>
-              <span className="flex items-center gap-1.5 text-emerald-800">
-                <Clock className="w-4 h-4 text-emerald-600" /> Mon–Sat 5:00 PM – 8:30 PM
-              </span>
+            {/* Location Reference */}
+            <div className="pt-2 flex items-center gap-2 text-xs text-[#737B73]">
+              <MapPin className="w-4 h-4 text-[#29483A]" />
+              <span>Valayapathi Salai, 6th Block, Mogappair East, Chennai 600037</span>
             </div>
 
           </div>

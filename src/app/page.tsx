@@ -1,101 +1,89 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/nivis/Navbar";
-import { Hero } from "@/components/nivis/Hero";
-import { HeroTrustStrip } from "@/components/nivis/HeroTrustStrip";
-import { EmotionalBrandSection } from "@/components/nivis/EmotionalBrandSection";
-import { TheCareBehindNivis } from "@/components/nivis/TheCareBehindNivis";
-import { RecoveryStoriesSection } from "@/components/nivis/RecoveryStoriesSection";
-import { ServicesSection } from "@/components/nivis/ServicesSection";
-import { ParvoEducationSection } from "@/components/nivis/ParvoEducationSection";
-import { PetCarePassport } from "@/components/nivis/PetCarePassport";
-import { VaccinationReminder } from "@/components/nivis/VaccinationReminder";
-import { PetUrgencyGuide } from "@/components/nivis/PetUrgencyGuide";
-import { PetStoreSection } from "@/components/nivis/PetStoreSection";
-import { LocationSection } from "@/components/nivis/LocationSection";
-import { FaqSection } from "@/components/nivis/FaqSection";
-import { EmergencyCta } from "@/components/nivis/EmergencyCta";
-import { FinalCta } from "@/components/nivis/FinalCta";
-import { Footer } from "@/components/nivis/Footer";
-import { MobileStickyBar } from "@/components/nivis/MobileStickyBar";
-import { NiviAssistant } from "@/components/nivis/NiviAssistant";
-import { AppointmentModal } from "@/components/nivis/AppointmentModal";
+import { Navbar } from "@/components/layout/Navbar";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { ServicesSection } from "@/components/sections/ServicesSection";
+import { GallerySection } from "@/components/sections/GallerySection";
+import { DoctorsSection } from "@/components/sections/DoctorsSection";
+import { RecognitionSection } from "@/components/sections/RecognitionSection";
+import { SpecialistCentresSection } from "@/components/sections/SpecialistCentresSection";
+import { ReviewsSection } from "@/components/sections/ReviewsSection";
+import { PostCareSection } from "@/components/sections/PostCareSection";
+import { InstagramSection } from "@/components/sections/InstagramSection";
+import { LocationSection } from "@/components/sections/LocationSection";
+import { AppointmentSection } from "@/components/sections/AppointmentSection";
+import { Footer } from "@/components/layout/Footer";
+import { ChatWidget } from "@/components/ui/ChatWidget";
+import { BookingModal } from "@/components/ui/BookingModal";
 
-export default function Home() {
-  const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
+export default function HomePage() {
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState("");
+
+  const handleOpenBookingModal = (service = "") => {
+    setSelectedService(service);
+    setIsBookingModalOpen(true);
+  };
 
   return (
-    <div id="top" className="min-h-screen bg-[#faf7f2] text-[#1e242b] flex flex-col selection:bg-[#153e35] selection:text-white">
-      {/* 1. Sticky Navigation */}
-      <Navbar
-        onOpenAppointment={() => setAppointmentModalOpen(true)}
-      />
+    <div className="min-h-screen bg-[#F8F6F0] text-[#29342D] font-sans antialiased selection:bg-[#E7EDE3] selection:text-[#1E332A]">
+      
+      {/* 01. Refined Navigation */}
+      <Navbar onOpenAppointmentModal={() => handleOpenBookingModal()} />
 
-      {/* Main Content Sections */}
-      <main className="flex-1">
-        {/* 2. Asymmetric Hero */}
-        <Hero onOpenAppointment={() => setAppointmentModalOpen(true)} />
+      <main>
+        {/* 02. Clinic-First Hero */}
+        <HeroSection onOpenAppointmentModal={() => handleOpenBookingModal()} />
 
-        {/* 3. Hero Trust Strip */}
-        <HeroTrustStrip />
+        {/* 03. A Short Introduction to Jaksh's Dental Junction */}
+        <AboutSection />
 
-        {/* 4. Section: Emotional Brand Statement */}
-        <EmotionalBrandSection />
+        {/* 04. Selected Treatment Areas (11 Categories) */}
+        <ServicesSection onSelectService={(service) => handleOpenBookingModal(service)} />
 
-        {/* 5. Section: The Care Behind Nivis (Brand Story & Dr. Karthika customer quote) */}
-        <TheCareBehindNivis />
+        {/* 05. A Carefully Composed Clinic Photography Section */}
+        <GallerySection />
 
-        {/* 6. Section: Real Pet Recovery Stories */}
-        <RecoveryStoriesSection />
+        {/* 06. Meet the Dental Team ("Meet Your Dental Care Team" - 7 Members) */}
+        <DoctorsSection onOpenAppointmentModal={() => handleOpenBookingModal()} />
 
-        {/* 7. Section: Clinical Services (6 categories) */}
-        <ServicesSection onOpenAppointment={() => setAppointmentModalOpen(true)} />
+        {/* 07. Recognition and Professional Affiliations (Colgate-Palmolive #ChampionsOfSmiles) */}
+        <RecognitionSection />
 
-        {/* 8. Section: Parvo / Serious Illness Awareness */}
-        <ParvoEducationSection />
+        {/* 08. Registered Centres and Specialist Capabilities (ABHAYA, Sports Dental, Precisalign) */}
+        <SpecialistCentresSection />
 
-        {/* 9. Unique Interactive Feature: Pet Store & WhatsApp Shopping Enquiry */}
-        <PetStoreSection />
+        {/* 09. Patient Reviews & Authentic Feedback Section */}
+        <ReviewsSection />
 
-        {/* 10. Unique Interactive Feature: Pet Urgency Triage Guide */}
-        <PetUrgencyGuide />
+        {/* 10. Interactive Post-Treatment Dental Care */}
+        <PostCareSection onOpenAppointment={() => handleOpenBookingModal()} />
 
-        {/* 11. Unique Interactive Feature: Pet Care Passport */}
-        <PetCarePassport />
+        {/* 11. Instagram / Social Section ("Life at Jaksh's Dental Junction") */}
+        <InstagramSection />
 
-        {/* 12. Unique Interactive Feature: Vaccination Reminder */}
-        <VaccinationReminder />
+        {/* 12. Clinic Location, Contact Information and Opening Hours */}
+        <LocationSection onOpenAppointmentModal={() => handleOpenBookingModal()} />
 
-        {/* 13. Critical Section: Real Google Maps & Location Information */}
-        <LocationSection />
-
-        {/* 14. Section: Common Questions (FAQ Accordion) */}
-        <FaqSection />
-
-        {/* 15. Section: Calm Emergency CTA */}
-        <EmergencyCta />
-
-        {/* 16. Section: Final Brand CTA */}
-        <FinalCta onOpenAppointment={() => setAppointmentModalOpen(true)} />
+        {/* 13. Appointment Enquiry Section */}
+        <AppointmentSection initialService={selectedService} />
       </main>
 
-      {/* 17. Complete Business Footer */}
-      <Footer
-        onOpenAppointment={() => setAppointmentModalOpen(true)}
+      {/* 14. Refined Footer */}
+      <Footer onOpenAppointmentModal={() => handleOpenBookingModal()} />
+
+      {/* Discreet, Subordinate Contact Assistant */}
+      <ChatWidget onOpenBooking={() => handleOpenBookingModal()} />
+
+      {/* Accessible Appointment Enquiry Modal */}
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        preselectedService={selectedService}
       />
 
-      {/* 18. Mobile Sticky Quick Action Bar */}
-      <MobileStickyBar onOpenAppointment={() => setAppointmentModalOpen(true)} />
-
-      {/* 19. Floating Nivi 🐾 AI Pet Assistant */}
-      <NiviAssistant onOpenAppointment={() => setAppointmentModalOpen(true)} />
-
-      {/* 20. Multi-Step Appointment Request Modal */}
-      <AppointmentModal
-        isOpen={appointmentModalOpen}
-        onClose={() => setAppointmentModalOpen(false)}
-      />
     </div>
   );
 }

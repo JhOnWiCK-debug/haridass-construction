@@ -8,39 +8,39 @@ import {
   Clock,
   Navigation,
   ExternalLink,
-  ShieldAlert,
-  CheckCircle2,
   Calendar,
 } from "lucide-react";
 
-export const LocationSection: React.FC = () => {
+interface LocationSectionProps {
+  onOpenAppointmentModal?: () => void;
+}
+
+export const LocationSection: React.FC<LocationSectionProps> = ({
+  onOpenAppointmentModal,
+}) => {
   const [currentStatus, setCurrentStatus] = useState<{
     isOpen: boolean;
     label: string;
     sublabel: string;
   }>({
     isOpen: false,
-    label: "Checking Clinic Status...",
+    label: "Checking Hours...",
     sublabel: "",
   });
 
   useEffect(() => {
-    // Calculate current open/closed status for Chennai (IST UTC+5:30)
     const checkClinicHours = () => {
       const now = new Date();
-      // UTC time + 5.5 hours for IST
       const utc = now.getTime() + now.getTimezoneOffset() * 60000;
       const istDate = new Date(utc + 3600000 * 5.5);
 
-      const dayOfWeek = istDate.getDay(); // 0 is Sunday
+      const dayOfWeek = istDate.getDay();
       const hours = istDate.getHours();
       const minutes = istDate.getMinutes();
       const currentTimeInMinutes = hours * 60 + minutes;
 
-      // 5:00 PM = 17 * 60 = 1020 mins
-      // 8:30 PM = 20 * 60 + 30 = 1230 mins
-      const openTime = 17 * 60;
-      const closeTime = 20 * 60 + 30;
+      const openTime = 17 * 60; // 5:00 PM
+      const closeTime = 20 * 60 + 30; // 8:30 PM
 
       if (dayOfWeek === 0) {
         setCurrentStatus({
@@ -52,7 +52,7 @@ export const LocationSection: React.FC = () => {
         setCurrentStatus({
           isOpen: true,
           label: "Open Now",
-          sublabel: "Consultations active until 8:30 PM today",
+          sublabel: "Consultations active until 8:30 PM",
         });
       } else if (currentTimeInMinutes < openTime) {
         setCurrentStatus({
@@ -63,7 +63,7 @@ export const LocationSection: React.FC = () => {
       } else {
         setCurrentStatus({
           isOpen: false,
-          label: "Closed for the Day",
+          label: "Closed for Today",
           sublabel: dayOfWeek === 6 ? "Opens Monday at 5:00 PM" : "Opens tomorrow at 5:00 PM",
         });
       }
@@ -74,32 +74,42 @@ export const LocationSection: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleBook = () => {
+    if (onOpenAppointmentModal) {
+      onOpenAppointmentModal();
+    } else {
+      const target = document.querySelector("#appointment");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
-    <section id="location" className="py-20 lg:py-28 bg-white relative">
+    <section id="contact" className="py-20 lg:py-28 bg-[#FFFDF9] border-b border-[#E2E4DA]/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-3 border border-emerald-200/60">
-            <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-            Clinic Location & Hours
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Find Our Clinic in Mogappair East
+        <div className="max-w-3xl mb-14">
+          <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#737B73]">
+            Location & Timings
+          </span>
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#1E332A] font-normal tracking-tight mt-2 leading-tight">
+            Find our clinic in Mogappair East.
           </h2>
-          <p className="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">
-            Conveniently situated on Valayapathi Salai (6th Block). Visit us for professional evening dental care with easy parking and accessibility.
+          <p className="mt-3 text-sm sm:text-base text-[#29342D]/80 leading-relaxed font-normal">
+            Accessible on Valayapathi Salai (6th Block). Dedicated evening hours suited for families, students, and working professionals.
           </p>
         </div>
 
         {/* 2-Column Responsive Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           
-          {/* LEFT: Interactive Google Map */}
+          {/* Interactive Google Map */}
           <div className="lg:col-span-7 flex flex-col">
-            <div className="relative w-full h-80 sm:h-96 lg:h-full min-h-[380px] rounded-3xl overflow-hidden shadow-lg border border-slate-200">
+            <div className="relative w-full h-80 sm:h-96 lg:h-full min-h-[380px] rounded-2xl overflow-hidden border border-[#E2E4DA] bg-[#F8F6F0]">
               <iframe
-                title="Jaksh's Dental Junction Mogappair East Google Map Location"
+                title="Jaksh's Dental Junction Mogappair East Google Map"
                 src={CLINIC_INFO.googleMapsEmbedUrl}
                 width="100%"
                 height="100%"
@@ -111,93 +121,80 @@ export const LocationSection: React.FC = () => {
               />
 
               {/* Floating Map Helper Badge */}
-              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-md border border-slate-200/80 max-w-xs pointer-events-none">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs font-bold text-slate-900">
-                    Jaksh&apos;s Dental Junction
-                  </span>
-                </div>
-                <p className="text-[11px] text-slate-600 mt-0.5">
+              <div className="absolute top-4 left-4 bg-[#FFFDF9]/95 backdrop-blur-xs p-3 rounded-lg border border-[#E2E4DA] max-w-xs shadow-xs pointer-events-none">
+                <p className="text-xs font-medium text-[#1E332A]">
+                  Jaksh&apos;s Dental Junction
+                </p>
+                <p className="text-[11px] text-[#737B73] mt-0.5">
                   Valayapathi Salai, Block 6, Mogappair East
                 </p>
               </div>
 
-              {/* Direct Open in Google Maps Overlay CTA on bottom right */}
+              {/* Open in Google Maps */}
               <div className="absolute bottom-4 right-4">
                 <a
                   href={CLINIC_INFO.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white text-emerald-800 text-xs font-bold shadow-md hover:bg-emerald-50 transition-colors border border-slate-200"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FFFDF9] text-[#29483A] text-xs font-medium border border-[#E2E4DA] shadow-xs hover:bg-[#F0F3EC]"
                 >
-                  <ExternalLink className="w-3.5 h-3.5 text-emerald-600" />
+                  <ExternalLink className="w-3.5 h-3.5" />
                   Open in Google Maps
                 </a>
               </div>
             </div>
           </div>
 
-          {/* RIGHT: Clinic Details & Opening Hours */}
+          {/* Right Column: Address, Hours, Actions */}
           <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
             
-            {/* Address & Contact Card */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-emerald-50/50 border border-emerald-200/80 shadow-xs space-y-5">
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
-                    Clinic Details
-                  </span>
-                  
-                  {/* Live Open / Closed Indicator */}
-                  <span
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold ${
-                      currentStatus.isOpen
-                        ? "bg-emerald-600 text-white"
-                        : "bg-slate-200 text-slate-700"
-                    }`}
-                  >
-                    <span
-                      className={`w-2 h-2 rounded-full ${
-                        currentStatus.isOpen ? "bg-white animate-pulse" : "bg-slate-500"
-                      }`}
-                    />
-                    {currentStatus.label}
-                  </span>
-                </div>
-
-                <h3 className="text-2xl font-black text-slate-900">
-                  {CLINIC_INFO.name}
+            {/* Address Details */}
+            <div className="p-6 sm:p-7 rounded-2xl bg-[#F8F6F0] border border-[#E2E4DA] space-y-5">
+              <div className="flex items-center justify-between pb-3 border-b border-[#E2E4DA]">
+                <h3 className="font-editorial text-2xl text-[#1E332A] font-normal">
+                  Clinic Details
                 </h3>
-                <p className="text-xs italic text-emerald-800 mt-0.5 font-medium">
-                  {CLINIC_INFO.tagline}
-                </p>
+                
+                {/* Live Open / Closed Tag */}
+                <span
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium ${
+                    currentStatus.isOpen
+                      ? "bg-[#E7EDE3] text-[#29483A]"
+                      : "bg-[#F0F3EC] text-[#737B73]"
+                  }`}
+                >
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      currentStatus.isOpen ? "bg-[#29483A]" : "bg-[#737B73]"
+                    }`}
+                  />
+                  {currentStatus.label}
+                </span>
               </div>
 
-              {/* Address details */}
-              <div className="space-y-3 text-sm text-slate-700 border-t border-emerald-200/60 pt-4">
+              <div className="space-y-3.5 text-xs sm:text-sm text-[#29342D]/85">
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#29483A] shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-slate-900">Address:</p>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      {CLINIC_INFO.address.street},<br />
-                      {CLINIC_INFO.address.block}, {CLINIC_INFO.address.area},<br />
-                      {CLINIC_INFO.address.city}, {CLINIC_INFO.address.state} {CLINIC_INFO.address.pincode}
+                    <p className="font-medium text-[#1E332A]">Address</p>
+                    <p className="text-xs text-[#737B73] mt-0.5 leading-relaxed">
+                      {CLINIC_INFO.address.street}, {CLINIC_INFO.address.block},<br />
+                      {CLINIC_INFO.address.area}, {CLINIC_INFO.address.city},<br />
+                      Tamil Nadu {CLINIC_INFO.address.pincode}
                     </p>
-                    <div className="mt-1.5 inline-block text-[11px] font-mono bg-white px-2 py-0.5 rounded border border-emerald-200 text-slate-600">
-                      Plus Code: <strong>{CLINIC_INFO.plusCode}</strong>
-                    </div>
+                    <p className="text-[11px] font-mono text-[#737B73] mt-1">
+                      Plus Code: {CLINIC_INFO.plusCode}
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 pt-1">
-                  <Phone className="w-5 h-5 text-emerald-600 shrink-0" />
+                  <Phone className="w-4 h-4 text-[#29483A] shrink-0" />
                   <div>
-                    <p className="text-xs font-semibold text-slate-500">Phone for Appointments:</p>
+                    <p className="text-[11px] text-[#737B73]">Telephone for Enquiries</p>
                     <a
                       href={CLINIC_INFO.phone}
-                      className="text-base sm:text-lg font-bold text-emerald-800 hover:text-emerald-950 transition-colors"
+                      className="text-sm font-medium text-[#29483A] hover:underline"
                     >
                       {CLINIC_INFO.phoneDisplay}
                     </a>
@@ -205,66 +202,62 @@ export const LocationSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Action Buttons: Get Directions & Call Clinic */}
-              <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Action Buttons */}
+              <div className="pt-2 grid grid-cols-2 gap-3">
                 <a
                   href={CLINIC_INFO.googleMapsDirectionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm transition-all"
+                  className="px-4 py-2.5 rounded-lg text-xs font-medium text-white bg-[#29483A] hover:bg-[#1E332A] text-center flex items-center justify-center gap-1.5 transition-colors"
                 >
-                  <Navigation className="w-4 h-4" />
+                  <Navigation className="w-3.5 h-3.5" />
                   Get Directions
                 </a>
 
                 <a
                   href={CLINIC_INFO.phone}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold text-emerald-900 bg-white hover:bg-emerald-100/80 border border-emerald-300 transition-colors"
+                  className="px-4 py-2.5 rounded-lg text-xs font-medium text-[#29483A] bg-[#FFFDF9] hover:bg-[#F0F3EC] border border-[#E2E4DA] text-center flex items-center justify-center gap-1.5 transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-emerald-600" />
+                  <Phone className="w-3.5 h-3.5" />
                   Call Clinic
                 </a>
               </div>
             </div>
 
             {/* Opening Hours Schedule Card */}
-            <div className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-3">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div className="p-6 rounded-2xl bg-[#FFFDF9] border border-[#E2E4DA] space-y-3">
+              <div className="flex items-center justify-between pb-2.5 border-b border-[#E2E4DA]">
                 <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-emerald-600" />
-                  <h4 className="text-sm font-bold text-slate-900">
-                    Opening Hours
+                  <Clock className="w-4 h-4 text-[#29483A]" />
+                  <h4 className="text-xs font-medium uppercase tracking-wider text-[#1E332A]">
+                    Consultation Hours
                   </h4>
                 </div>
-                <span className="text-[11px] font-semibold text-slate-500">
+                <span className="text-[11px] text-[#737B73]">
                   {currentStatus.sublabel}
                 </span>
               </div>
 
-              <div className="space-y-1.5 text-xs sm:text-sm">
+              <div className="space-y-1.5 text-xs">
                 {CLINIC_INFO.timings.schedule.map((item) => (
                   <div
                     key={item.day}
-                    className={`flex items-center justify-between py-1.5 px-3 rounded-xl ${
+                    className={`flex items-center justify-between py-1 px-2.5 rounded ${
                       !item.isOpen
-                        ? "bg-rose-50/70 text-rose-900 font-bold border border-rose-100"
-                        : "text-slate-700 hover:bg-slate-50"
+                        ? "bg-[#FAF3F2] text-[#8F3E37] font-medium"
+                        : "text-[#29342D]/85 hover:bg-[#F8F6F0]"
                     }`}
                   >
-                    <span className="font-medium">{item.day}</span>
-                    <span
-                      className={`font-semibold ${
-                        !item.isOpen ? "text-rose-700 uppercase tracking-wide text-xs" : "text-emerald-800"
-                      }`}
-                    >
+                    <span>{item.day}</span>
+                    <span className={!item.isOpen ? "text-[#8F3E37]" : "font-medium text-[#29483A]"}>
                       {item.hours}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="pt-2 text-[11px] text-slate-500 text-center">
-                * Prior phone or WhatsApp appointment is recommended to minimize waiting time.
+              <div className="pt-2 text-[11px] text-[#737B73] text-center">
+                * Prior appointment enquiry is recommended to ensure dedicated time.
               </div>
             </div>
 

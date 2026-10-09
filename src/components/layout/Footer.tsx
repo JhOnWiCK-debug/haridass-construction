@@ -8,28 +8,26 @@ import {
   Phone,
   MapPin,
   Clock,
-  Navigation,
-  Calendar,
-  Heart,
-  ShieldCheck,
-  ChevronRight,
   ExternalLink,
+  Calendar,
+  ArrowUpRight,
 } from "lucide-react";
+import { InstagramIcon } from "@/components/ui/InstagramIcon";
 
 interface FooterProps {
   onOpenAppointmentModal?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenAppointmentModal }) => {
-  const quickLinks = [
-    { name: "Home", href: "#hero" },
-    { name: "About the Clinic", href: "#about" },
-    { name: "Doctors & Specialists", href: "#doctors" },
-    { name: "Dental Services", href: "#services" },
+  const navLinks = [
+    { name: "About the Practice", href: "#about" },
+    { name: "Clinical Treatments", href: "#treatments" },
+    { name: "Meet the Team", href: "#team" },
+    { name: "Colgate Recognition", href: "#recognition" },
     { name: "Post-Treatment Care", href: "#post-treatment-care" },
-    { name: "Clinic Gallery", href: "#gallery" },
-    { name: "Find Our Location", href: "#location" },
-    { name: "Contact & Appointments", href: "#appointment" },
+    { name: "Clinic Photography", href: "#gallery" },
+    { name: "Location & Timings", href: "#contact" },
+    { name: "Book an Appointment", href: "#appointment" },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -52,142 +50,119 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAppointmentModal }) => {
   };
 
   return (
-    <footer className="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-emerald-900/40">
+    <footer className="bg-[#1E332A] text-[#E7EDE3] pt-16 pb-12 border-t border-[#29483A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[#29483A]">
           
           {/* Col 1: Brand & Tagline */}
-          <div className="lg:col-span-4 space-y-4">
+          <div className="lg:col-span-5 space-y-4">
             <ClinicLogo invert size="lg" />
-            <p className="text-emerald-400 font-semibold text-sm italic">
-              &ldquo;{CLINIC_INFO.tagline}&rdquo;
-            </p>
-            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-              Jaksh&apos;s Dental Junction is a dedicated, women-owned dental healthcare clinic in Mogappair East, Chennai. Led by Rotary Endodontist Dr. Krishnapriya G with a team of consultant specialists.
+            
+            <p className="text-xs sm:text-sm text-[#B8C7B2] leading-relaxed max-w-sm pt-2">
+              Gentle dentistry delivered with attention, clarity and kindness. Comprehensive general and specialist dental care in Mogappair East, Chennai.
             </p>
 
-            <div className="pt-2 flex flex-wrap gap-2">
-              <span className="px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-[11px] font-medium">
-                Founder: Dr. Krishnapriya G
-              </span>
-              <span className="px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-[11px] font-medium">
-                12 Years Practice
-              </span>
-              <span className="px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-[11px] font-medium">
-                Women-Owned
-              </span>
+            <div className="pt-2 flex items-center gap-3">
+              <a
+                href={CLINIC_INFO.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+                aria-label="Instagram Profile"
+              >
+                <InstagramIcon className="w-4 h-4" />
+              </a>
+
+              <a
+                href={CLINIC_INFO.colgateFeatureUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-[11px] text-[#E7EDE3] transition-colors"
+              >
+                <span>Colgate #ChampionsOfSmiles Feature</span>
+                <ArrowUpRight className="w-3 h-3 text-[#B8C7B2]" />
+              </a>
             </div>
           </div>
 
-          {/* Col 2: Quick Links */}
-          <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-              Quick Links
+          {/* Col 2: Navigation Links */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#B8C7B2]">
+              Navigation
             </h4>
-            <ul className="space-y-2 text-xs sm:text-sm">
-              {quickLinks.map((link) => (
+            <ul className="space-y-2 text-xs text-[#E7EDE3]/85">
+              {navLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="flex items-center gap-1.5 text-slate-400 hover:text-emerald-400 transition-colors"
+                    className="hover:text-white transition-colors hover:underline"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-emerald-500" />
-                    <span>{link.name}</span>
+                    {link.name}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 3: Hours & Quick Actions */}
-          <div className="lg:col-span-5 space-y-4">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-              Contact & Timings
+          {/* Col 3: Address & Timings */}
+          <div className="lg:col-span-4 space-y-3">
+            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#B8C7B2]">
+              Practice Information
             </h4>
             
-            <div className="space-y-2.5 text-xs sm:text-sm text-slate-400">
+            <div className="space-y-2.5 text-xs text-[#E7EDE3]/85 leading-relaxed">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#B8C7B2] shrink-0 mt-0.5" />
                 <p>
                   {CLINIC_INFO.address.full}
-                  <span className="block text-[11px] text-slate-400 mt-0.5 font-mono">
+                  <span className="block text-[11px] text-[#B8C7B2] mt-0.5 font-mono">
                     Plus Code: {CLINIC_INFO.plusCode}
                   </span>
                 </p>
               </div>
 
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+                <Phone className="w-4 h-4 text-[#B8C7B2] shrink-0" />
                 <a
                   href={CLINIC_INFO.phone}
-                  className="text-white hover:text-emerald-400 font-bold transition-colors"
+                  className="text-white hover:underline font-medium"
                 >
                   {CLINIC_INFO.phoneDisplay}
                 </a>
               </div>
 
-              <div className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5 pt-1">
+                <Clock className="w-4 h-4 text-[#B8C7B2] shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-white font-medium">
-                    Monday – Saturday: 5:00 PM – 8:30 PM
-                  </p>
-                  <p className="text-rose-400 font-bold text-xs mt-0.5">
-                    Sunday: Closed
-                  </p>
+                  <p>Monday – Saturday: 5:00 PM – 8:30 PM</p>
+                  <p className="text-[#B8C7B2] text-[11px]">Sunday: Closed</p>
                 </div>
               </div>
             </div>
 
-            {/* Quick Action CTA Buttons */}
-            <div className="pt-2 flex flex-wrap gap-2.5">
+            <div className="pt-3">
               <button
                 onClick={handleBook}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors shadow-xs"
+                className="px-4 py-2 rounded-lg text-xs font-medium text-[#1E332A] bg-[#E7EDE3] hover:bg-white transition-colors"
               >
-                <Calendar className="w-3.5 h-3.5" />
-                Book Appointment
+                Book an Appointment
               </button>
-
-              <a
-                href={CLINIC_INFO.phone}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors"
-              >
-                <Phone className="w-3.5 h-3.5 text-emerald-400" />
-                Call Clinic
-              </a>
-
-              <a
-                href={CLINIC_INFO.googleMapsDirectionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors"
-              >
-                <Navigation className="w-3.5 h-3.5 text-emerald-400" />
-                Get Directions
-              </a>
             </div>
-
           </div>
 
         </div>
 
-        {/* Bottom Bar & Disclaimer */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center md:text-left">
+        {/* Bottom Disclaimer & Copyright */}
+        <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] text-[#B8C7B2]">
           <div>
-            <p>
-              © {new Date().getFullYear()} Jaksh&apos;s Dental Junction. All rights reserved.
-            </p>
-            <p className="text-[11px] text-slate-400 mt-1">
-              Valayapathi Salai, Block 6, Mogappair East, Chennai, Tamil Nadu 600037
-            </p>
+            © {new Date().getFullYear()} Jaksh&apos;s Dental Junction. All rights reserved.
           </div>
 
-          <div className="text-[11px] text-slate-400 max-w-md text-center md:text-right">
-            Medical Disclaimer: Content on this site is provided for general informational purposes only and does not constitute individual medical diagnosis or treatment advice. Consult with our dental team for personalized clinical recommendations.
+          <div className="max-w-md text-left md:text-right leading-relaxed text-[#B8C7B2]/80">
+            Medical Disclaimer: Content on this site is provided for general health awareness and does not substitute individualized clinical evaluation. Consult our dental team for personal treatment planning.
           </div>
         </div>
 

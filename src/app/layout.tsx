@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
-import { NIVIS_DATA } from "@/data/nivisData";
+import { CLINIC_INFO } from "@/data/clinicInfo";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -10,51 +10,51 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-sans",
+const dmSans = DM_Sans({
+  variable: "--font-dmsans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#153e35",
+  themeColor: "#29483A",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nivispetclinic.com"),
-  title: "Nivis Pet Clinic & Pet Store | Veterinary Care in Thiruverkadu, Chennai",
+  metadataBase: new URL("https://jakshsdentaljunction.com"),
+  title: "Jaksh's Dental Junction | Dental Care in Mogappair East, Chennai",
   description:
-    "Compassionate veterinary care and everyday pet essentials in Thiruverkadu, Chennai. Consultations, vaccinations, puppy & kitten care, pet treatment. 5.0 ★ Google Rating.",
+    "Thoughtful dental care for individuals and families in Mogappair East, Chennai. Led by Dr. Krishnapriya G alongside experienced consultant specialists. Where dentistry & kindness meet.",
   keywords: [
-    "Nivis Pet Clinic",
-    "Nivis Pet Clinic Thiruverkadu",
-    "Nivis Pet Store MGR Nagar",
-    "Pet clinic Thiruverkadu",
-    "Veterinary clinic Thiruverkadu",
-    "Pet doctor Thiruverkadu",
-    "Pet store Thiruverkadu",
-    "Pet clinic MGR Nagar",
-    "Dr Karthika veterinarian",
-    "Pet clinic Chennai 600077",
+    "Jaksh's Dental Junction",
+    "Dentist in Mogappair East",
+    "Dental clinic in Mogappair",
+    "Dental care in Chennai",
+    "Dentist in Chennai",
+    "Dr Krishnapriya G",
+    "Rotary Endodontist Chennai",
+    "Dental clinic Valayapathi Salai",
+    "Orthodontist Mogappair",
+    "Dental Implants Chennai",
   ],
-  authors: [{ name: "Nivis Pet Clinic & Pet Store" }],
+  authors: [{ name: "Jaksh's Dental Junction" }],
   openGraph: {
-    title: "Nivis Pet Clinic & Pet Store | Because every pet deserves a little more care.",
+    title: "Jaksh's Dental Junction | Dental Care in Mogappair East, Chennai",
     description:
-      "Compassionate veterinary care and everyday pet essentials in MGR Nagar, Thiruverkadu, Chennai. 5.0 ★ Google Rating from real pet parents.",
+      "Gentle dentistry. Thoughtfully done. Explore treatments, meet the team, and find our clinic on Valayapathi Salai, Mogappair East.",
     type: "website",
     locale: "en_IN",
-    siteName: "Nivis Pet Clinic & Pet Store",
+    siteName: "Jaksh's Dental Junction",
     images: [
       {
-        url: "/images/nivis/hero-vet-care.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Nivis Pet Clinic & Pet Store - Thiruverkadu, Chennai",
+        url: "/images/dental/clinic-official-logo.jpg",
+        width: 800,
+        height: 800,
+        alt: "Jaksh's Dental Junction Logo",
       },
     ],
   },
@@ -71,27 +71,25 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "VeterinaryCare",
-    name: NIVIS_DATA.name,
+    "@type": "Dentist",
+    name: CLINIC_INFO.name,
     description:
-      "Nivis Pet Clinic & Pet Store provides compassionate veterinary care and everyday pet essentials for pets in Thiruverkadu, Chennai.",
-    telephone: NIVIS_DATA.contact.phone,
-    url: "https://nivispetclinic.com",
-    image: "/images/nivis/hero-vet-care.jpg",
-    priceRange: "₹₹",
-    isAccessibleForFree: false,
+      "Jaksh's Dental Junction is an independent dental clinic on Valayapathi Salai, Mogappair East, Chennai. Gentle dentistry delivered with attention, clarity and kindness.",
+    telephone: CLINIC_INFO.phoneDisplay,
+    url: "https://jakshsdentaljunction.com",
+    image: "https://jakshsdentaljunction.com/images/dental/clinic-official-logo.jpg",
     address: {
       "@type": "PostalAddress",
-      streetAddress: `${NIVIS_DATA.location.doorNo}, ${NIVIS_DATA.location.landmark}`,
-      addressLocality: "Thiruverkadu",
-      addressRegion: "Tamil Nadu",
-      postalCode: NIVIS_DATA.location.pincode,
+      streetAddress: CLINIC_INFO.address.street,
+      addressLocality: CLINIC_INFO.address.area,
+      addressRegion: CLINIC_INFO.address.state,
+      postalCode: CLINIC_INFO.address.pincode,
       addressCountry: "IN",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 13.0694,
-      longitude: 80.1246,
+      latitude: 13.0888998,
+      longitude: 80.1764654,
     },
     openingHoursSpecification: [
       {
@@ -103,29 +101,18 @@ export default function RootLayout({
           "Thursday",
           "Friday",
           "Saturday",
-          "Sunday",
         ],
-        opens: "09:30",
-        closes: "21:30",
+        opens: "17:00",
+        closes: "20:30",
       },
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      reviewCount: "5",
-    },
-    employee: [
-      {
-        "@type": "Person",
-        name: NIVIS_DATA.doctorMentioned,
-        jobTitle: NIVIS_DATA.doctorRole,
-      },
-    ],
+    priceRange: "$$",
+    paymentAccepted: "Cash, UPI, Credit Card, Debit Card",
     areaServed: [
-      { "@type": "AdministrativeArea", name: "Thiruverkadu" },
-      { "@type": "AdministrativeArea", name: "MGR Nagar" },
-      { "@type": "AdministrativeArea", name: "Thirumalai Balaji Nagar" },
       { "@type": "City", name: "Chennai" },
+      { "@type": "AdministrativeArea", name: "Mogappair East" },
+      { "@type": "AdministrativeArea", name: "Mogappair West" },
+      { "@type": "AdministrativeArea", name: "Anna Nagar" },
     ],
   };
 
@@ -138,7 +125,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${cormorant.variable} ${jakarta.variable} font-sans bg-[#faf7f2] text-[#1e242b] min-h-screen antialiased`}
+        className={`${cormorant.variable} ${dmSans.variable} font-sans bg-[#F8F6F0] text-[#29342D] min-h-screen antialiased`}
       >
         {children}
       </body>

@@ -1,22 +1,32 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --font-serif: var(--font-cormorant), "Playfair Display", Georgia, serif;
-    --font-sans: var(--font-sans), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-    
-    --nivis-charcoal: #1e242b;
-    --nivis-forest: #153e35;
-    --nivis-emerald: #1b4d3e;
-    --nivis-sage: #8fa89b;
-    --nivis-sage-light: #ebf1ee;
-    --nivis-ivory: #faf7f2;
-    --nivis-cream: #f4efe6;
-    --nivis-sand: #e8e2d5;
-    --nivis-terracotta: #c86343;
-    --nivis-terracotta-dark: #b05032;
-    --nivis-muted: #5e6872;
-  }
+:root {
+  --color-background: #F8F6F0;
+  --color-surface: #FFFDF9;
+  --color-sage: #B8C7B2;
+  --color-sage-light: #E7EDE3;
+  --color-sage-pale: #F0F3EC;
+  --color-forest: #29483A;
+  --color-forest-dark: #1E332A;
+  --color-text: #29342D;
+  --color-muted: #737B73;
+  --color-border: #E2E4DA;
+  --color-white: #FFFFFF;
+}
+
+@theme {
+  --color-ivory: #F8F6F0;
+  --color-surface: #FFFDF9;
+  --color-sage: #B8C7B2;
+  --color-sage-light: #E7EDE3;
+  --color-sage-pale: #F0F3EC;
+  --color-forest: #29483A;
+  --color-forest-dark: #1E332A;
+  --color-clinic-text: #29342D;
+  --color-clinic-muted: #737B73;
+  --color-clinic-border: #E2E4DA;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-dmsans), system-ui, sans-serif;
 }
 
 * {
@@ -26,82 +36,113 @@
 html {
   scroll-behavior: smooth;
   color-scheme: light;
+  background-color: var(--color-background);
 }
 
 body {
-  background-color: #faf7f2;
-  color: #1e242b;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-dmsans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
-  font-family: var(--font-sans), system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.font-serif {
-  font-family: var(--font-serif), Georgia, serif;
-}
-
-.font-sans {
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  selection-background-color: #E7EDE3;
+  selection-color: #1E332A;
 }
 
 ::selection {
-  background: #153e35;
-  color: #faf7f2;
+  background: #E7EDE3;
+  color: #1E332A;
 }
 
-/* Luxury editorial scrollbar */
+/* Editorial Serif Headings */
+.font-editorial {
+  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  font-feature-settings: "liga", "kern";
+}
+
+/* Subtle architectural scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f4efe6;
+  background: #F8F6F0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd3cb;
-  border-radius: 9999px;
+  background: #B8C7B2;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #153e35;
+  background: #29483A;
 }
 
-/* Subtle botanical / pet-care pattern texture */
-.bg-subtle-pattern {
-  background-image: radial-gradient(rgba(21, 62, 53, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* Editorial hairline borders */
+.border-subtle {
+  border-color: #E2E4DA;
 }
 
-.bg-organic-dots {
-  background-image: radial-gradient(rgba(200, 99, 67, 0.07) 1px, transparent 1px);
-  background-size: 20px 20px;
+/* Subtle card styling — warm, calm, restrained */
+.editorial-card {
+  background-color: #FFFDF9;
+  border: 1px solid #E2E4DA;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Editorial line decorations */
-.editorial-rule {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(30, 36, 43, 0.12) 20%, rgba(30, 36, 43, 0.12) 80%, transparent);
+.editorial-card:hover {
+  border-color: #B8C7B2;
+  box-shadow: 0 8px 24px -6px rgba(41, 72, 58, 0.06);
 }
 
-/* Soft luxury shadows */
-.shadow-editorial {
-  box-shadow: 0 16px 36px -12px rgba(21, 62, 53, 0.08);
+/* Restrained buttons */
+.btn-forest {
+  background-color: #29483A;
+  color: #FFFFFF;
+  transition: all 0.25s ease;
 }
 
-.shadow-editorial-lg {
-  box-shadow: 0 28px 56px -16px rgba(21, 62, 53, 0.12);
+.btn-forest:hover {
+  background-color: #1E332A;
 }
 
-/* Custom smooth transitions */
-.transition-luxury {
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+.btn-outline-forest {
+  background-color: transparent;
+  color: #29483A;
+  border: 1px solid #B8C7B2;
+  transition: all 0.25s ease;
 }
 
+.btn-outline-forest:hover {
+  background-color: #F0F3EC;
+  border-color: #29483A;
+}
+
+/* Focus visibility for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #29483A;
+  outline-offset: 2px;
+}
+
+/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: #FFFFFF;
+    color: #000000;
+  }
+  .no-print {
+    display: none !important;
   }
 }

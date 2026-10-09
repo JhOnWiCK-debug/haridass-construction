@@ -1,112 +1,52 @@
 "use client";
 
 import React from "react";
-import { Star, Quote, CheckCircle, ExternalLink } from "lucide-react";
-import { CUSTOMER_REVIEWS, BUSINESS_INFO } from "@/data/constructionData";
+import { CLINIC_INFO } from "@/data/clinicInfo";
+import { MessageSquare, ExternalLink, Heart, Shield } from "lucide-react";
 
-export default function ReviewsSection() {
+export const ReviewsSection: React.FC = () => {
   return (
-    <section id="reviews" className="relative py-24 sm:py-32 bg-[#090a0c] border-t border-white/10 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header & Google Overall Score Badge */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#c5a880] mb-3">
-              <span className="w-2 h-0.5 bg-[#c5a880]" />
-              Client Testimonials
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-tight">
-              Feedback Built on Real Experiences
-            </h2>
-            <p className="text-gray-400 text-sm sm:text-base mt-3 leading-relaxed">
-              Authentic review sentiments from clients who trusted Haridass Construction with their property projects in Chennai.
-            </p>
+    <section className="py-16 lg:py-20 bg-[#F8F6F0] border-b border-[#E2E4DA]/60">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <div className="p-8 sm:p-10 rounded-2xl bg-[#FFFDF9] border border-[#E2E4DA] space-y-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F0F3EC] text-[#29483A] text-xs font-medium border border-[#E2E4DA]">
+            <Heart className="w-3.5 h-3.5 text-[#29483A]" />
+            <span>Patient Experience & Local Feedback</span>
           </div>
 
-          {/* Google Rating Box */}
-          <div className="p-6 bg-[#111317] border border-white/10 rounded-sm flex items-center gap-6 shrink-0">
-            <div className="text-center border-r border-white/10 pr-6">
-              <div className="text-3xl font-serif font-bold text-white leading-none">
-                4.8
-              </div>
-              <div className="flex items-center gap-1 text-amber-400 justify-center my-1.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
-                ))}
-              </div>
-              <div className="text-[11px] text-gray-400 font-mono">out of 5.0</div>
-            </div>
+          <h2 className="font-editorial text-2xl sm:text-3xl text-[#1E332A] font-normal tracking-tight max-w-xl mx-auto">
+            Authentic feedback from Mogappair East.
+          </h2>
 
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-white">Google Reviews</span>
-                <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-500/20 text-emerald-400 rounded">
-                  Verified
-                </span>
-              </div>
-              <p className="text-xs text-gray-400">21 Customer Ratings</p>
-              <div className="text-[11px] text-[#c5a880] font-medium pt-0.5">
-                Ambattur, Chennai Location
-              </div>
-            </div>
-          </div>
-        </div>
+          <p className="text-xs sm:text-sm text-[#737B73] max-w-lg mx-auto leading-relaxed">
+            We value genuine relationships with our patients and their families. Read unfiltered reviews directly on Google Maps or share your own experience following your visit to our clinic.
+          </p>
 
-        {/* Reviews Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {CUSTOMER_REVIEWS.map((review) => (
-            <div
-              key={review.id}
-              className="relative bg-[#111317] border border-white/10 hover:border-[#c5a880]/40 p-8 rounded-sm transition-all duration-300 flex flex-col justify-between group"
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href={CLINIC_INFO.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-medium text-[#29483A] bg-[#F8F6F0] hover:bg-[#E7EDE3] border border-[#E2E4DA] transition-colors"
             >
-              {/* Quote icon accent */}
-              <div className="text-[#c5a880]/30 group-hover:text-[#c5a880]/60 transition-colors mb-4">
-                <Quote className="w-8 h-8" />
-              </div>
+              <span>Read Google Reviews</span>
+              <ExternalLink className="w-3.5 h-3.5 text-[#737B73]" />
+            </a>
 
-              {/* Review Text */}
-              <div className="flex-1">
-                <div className="flex items-center gap-1 text-amber-400 mb-4">
-                  {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400" />
-                  ))}
-                </div>
+            <a
+              href={CLINIC_INFO.googleMapsDirectionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-medium text-[#737B73] hover:text-[#29483A] hover:bg-[#F8F6F0] transition-colors"
+            >
+              <span>View Clinic Profile</span>
+            </a>
+          </div>
 
-                <p className="text-lg font-serif text-white group-hover:text-[#dfbe99] transition-colors leading-relaxed italic mb-6">
-                  &ldquo;{review.comment}&rdquo;
-                </p>
-              </div>
-
-              {/* Reviewer Meta */}
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center font-mono text-xs font-bold text-[#c5a880]">
-                    {review.initials}
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-white">
-                      {review.author}
-                    </div>
-                    <div className="text-[11px] text-gray-400">
-                      {review.date}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded">
-                  <CheckCircle className="w-3 h-3" />
-                  <span>Verified</span>
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
 
-        {/* Disclaimer note compliant with instructions */}
-        <div className="mt-8 text-center text-xs text-gray-400">
-          Reviews aggregated from authentic customer ratings on Google for Haridass Construction, Ambattur.
-        </div>
       </div>
     </section>
   );
-}
+};

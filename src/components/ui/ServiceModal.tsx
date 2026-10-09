@@ -2,30 +2,19 @@
 
 import React, { useEffect } from "react";
 import { DentalService } from "@/data/services";
-import {
-  X,
-  Calendar,
-  HelpCircle,
-  Clock,
-  CheckCircle2,
-  AlertCircle,
-  FileText,
-  ShieldAlert,
-  Sparkles,
-  Phone,
-} from "lucide-react";
+import { X, Calendar, ArrowRight, ShieldCheck, Check, Clock, AlertCircle } from "lucide-react";
 import { CLINIC_INFO } from "@/data/clinicInfo";
 
 interface ServiceModalProps {
   service: DentalService | null;
   onClose: () => void;
-  onBookService: (serviceName: string) => void;
+  onEnquire: (serviceName: string) => void;
 }
 
 export const ServiceModal: React.FC<ServiceModalProps> = ({
   service,
   onClose,
-  onBookService,
+  onEnquire,
 }) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -45,179 +34,147 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="service-modal-title"
+      aria-labelledby="service-detail-title"
     >
-      {/* Backdrop */}
+      {/* Subtle backdrop */}
       <div
-        className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-[#1E332A]/40 backdrop-blur-xs transition-opacity"
         onClick={onClose}
       />
 
-      {/* Modal Dialog Card */}
-      <div className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-emerald-100 overflow-hidden z-10 max-h-[90vh] flex flex-col my-auto animate-in zoom-in-95 duration-200">
+      {/* Editorial Modal Card */}
+      <div className="relative w-full max-w-2xl bg-[#FFFDF9] rounded-xl shadow-xl border border-[#E2E4DA] overflow-hidden z-10 max-h-[90vh] flex flex-col my-auto animate-in zoom-in-95 duration-200">
         
         {/* Header */}
-        <div className="p-6 sm:p-7 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/50 border-b border-emerald-100 flex items-start justify-between gap-4 sticky top-0 z-20 backdrop-blur-md">
+        <div className="p-6 sm:p-7 bg-[#F8F6F0] border-b border-[#E2E4DA] flex items-start justify-between gap-4 sticky top-0 z-20">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="px-3 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">
-                {service.category} Treatment
+              <span className="text-[10px] font-mono font-medium text-[#737B73] bg-[#E7EDE3] px-2 py-0.5 rounded">
+                Category {service.number}
               </span>
-              <span className="text-xs text-slate-500 font-medium">
-                Jaksh&apos;s Dental Junction
+              <span className="text-[11px] font-medium text-[#29483A]">
+                {service.category}
               </span>
             </div>
             <h3
-              id="service-modal-title"
-              className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+              id="service-detail-title"
+              className="font-editorial text-2xl sm:text-3xl font-normal text-[#1E332A] tracking-tight"
             >
               {service.name}
             </h3>
-            <p className="text-xs sm:text-sm text-emerald-700 font-medium mt-1">
-              {service.shortTagline}
+            <p className="text-xs text-[#737B73] mt-1 font-normal">
+              {service.shortSummary}
             </p>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2.5 rounded-2xl bg-white text-slate-400 hover:text-slate-700 hover:bg-slate-100 border border-slate-200/80 transition-colors shrink-0 shadow-2xs"
-            aria-label="Close treatment modal"
+            className="p-2 text-[#737B73] hover:text-[#1E332A] rounded-lg hover:bg-[#E7EDE3]/50 transition-colors"
+            aria-label="Close treatment details"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Scrollable Body Content */}
-        <div className="p-6 sm:p-8 overflow-y-auto space-y-7 divide-y divide-slate-100">
+        {/* Scrollable Content */}
+        <div className="p-6 sm:p-7 overflow-y-auto space-y-7 text-[#29342D]/85 text-xs sm:text-sm divide-y divide-[#E2E4DA]/60">
           
           {/* Overview */}
           <div className="space-y-2">
-            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
-              <FileText className="w-4 h-4 text-emerald-600" />
-              What is this treatment?
+            <h4 className="text-xs uppercase tracking-wider font-medium text-[#29483A]">
+              Treatment Overview
             </h4>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed bg-emerald-50/40 p-4 rounded-2xl border border-emerald-100/60">
-              {service.description}
+            <p className="leading-relaxed bg-[#F8F6F0] p-4 rounded-lg border border-[#E2E4DA]/60">
+              {service.fullDescription}
             </p>
           </div>
 
-          {/* Why Needed */}
+          {/* Why Referred */}
           <div className="pt-6 space-y-3">
-            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
-              <HelpCircle className="w-4 h-4 text-emerald-600" />
-              Why it may be needed
-            </h4>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {service.whyNeeded.map((reason, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 p-2.5 rounded-xl bg-slate-50 border border-slate-100"
-                >
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>{reason}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* What to Expect */}
-          <div className="pt-6 space-y-3">
-            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
-              <Clock className="w-4 h-4 text-emerald-600" />
-              What you can generally expect
+            <h4 className="text-xs uppercase tracking-wider font-medium text-[#29483A]">
+              When this care may be considered
             </h4>
             <ul className="space-y-2">
-              {service.whatToExpect.map((step, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start gap-3 text-xs sm:text-sm text-slate-700"
-                >
-                  <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                    {idx + 1}
-                  </span>
-                  <span>{step}</span>
+              {service.whyReferred.map((reason, idx) => (
+                <li key={idx} className="flex items-start gap-2.5">
+                  <span className="text-[#29483A] font-semibold">•</span>
+                  <span className="leading-relaxed">{reason}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Preparation & Aftercare side-by-side */}
-          <div className="pt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-4 rounded-2xl bg-amber-50/50 border border-amber-200/60 space-y-2">
-              <h5 className="text-xs font-bold text-amber-900 uppercase tracking-wider flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+          {/* Consultation Details */}
+          <div className="pt-6 space-y-3">
+            <h4 className="text-xs uppercase tracking-wider font-medium text-[#29483A]">
+              What a consultation involves
+            </h4>
+            <ul className="space-y-2">
+              {service.consultationDetails.map((item, idx) => (
+                <li key={idx} className="flex items-start gap-2.5">
+                  <span className="text-[#737B73] font-medium">{idx + 1}.</span>
+                  <span className="leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Preparation & Aftercare */}
+          <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="p-4 rounded-lg bg-[#F0F3EC] border border-[#E2E4DA]">
+              <h5 className="text-[11px] font-medium uppercase tracking-wider text-[#29483A] mb-2">
                 Preparation Guidance
               </h5>
-              <ul className="space-y-1.5 text-xs text-amber-900/90">
-                {service.preparation.map((prep, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <span className="text-amber-600 font-bold">•</span>
-                    <span>{prep}</span>
+              <ul className="space-y-1.5 text-xs text-[#29342D]/80">
+                {service.preparationGuidance.map((p, idx) => (
+                  <li key={idx} className="flex items-start gap-1.5">
+                    <span className="text-[#29483A]">•</span>
+                    <span>{p}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="p-4 rounded-2xl bg-emerald-50/50 border border-emerald-200/60 space-y-2">
-              <h5 className="text-xs font-bold text-emerald-900 uppercase tracking-wider flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                Basic Aftercare
+            <div className="p-4 rounded-lg bg-[#F8F6F0] border border-[#E2E4DA]">
+              <h5 className="text-[11px] font-medium uppercase tracking-wider text-[#29483A] mb-2">
+                Aftercare Expectations
               </h5>
-              <ul className="space-y-1.5 text-xs text-emerald-900/90">
-                {service.aftercare.map((care, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <span className="text-emerald-600 font-bold">•</span>
-                    <span>{care}</span>
+              <ul className="space-y-1.5 text-xs text-[#29342D]/80">
+                {service.aftercareGuidance.map((a, idx) => (
+                  <li key={idx} className="flex items-start gap-1.5">
+                    <span className="text-[#29483A]">•</span>
+                    <span>{a}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          {/* When to Contact the Dentist */}
-          <div className="pt-6 space-y-2">
-            <h4 className="text-xs font-bold text-red-900 uppercase tracking-wider flex items-center gap-1.5">
-              <AlertCircle className="w-4 h-4 text-red-600" />
-              When to Contact the Dentist
-            </h4>
-            <div className="p-3.5 rounded-2xl bg-red-50/60 border border-red-200/70 text-xs text-red-900 space-y-1">
-              {service.whenToContact.map((contact, idx) => (
-                <p key={idx} className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold">!</span>
-                  <span>{contact}</span>
-                </p>
-              ))}
-            </div>
-          </div>
-
-          {/* Disclaimer */}
-          <p className="pt-4 text-[11px] text-slate-400 italic">
-            * Medical Note: Information provided is for general educational awareness and does not replace individualized clinical evaluation or diagnosis. Suitability for specific procedures is determined following an in-person dental consultation at Jaksh&apos;s Dental Junction.
+          {/* Clinical Disclaimer */}
+          <p className="pt-4 text-[11px] text-[#737B73] italic">
+            * Medical Note: Clinical suitability and exact treatment protocols are determined during an in-person dental consultation at Jaksh&apos;s Dental Junction, Mogappair East.
           </p>
+
         </div>
 
-        {/* Modal Footer CTAs */}
-        <div className="p-5 sm:p-6 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <a
-            href={CLINIC_INFO.phone}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200"
-          >
-            <Phone className="w-4 h-4 text-emerald-600" />
-            Call for Inquiries: {CLINIC_INFO.phoneDisplay}
-          </a>
+        {/* Modal Footer */}
+        <div className="p-5 sm:p-6 bg-[#F8F6F0] border-t border-[#E2E4DA] flex flex-col sm:flex-row items-center justify-between gap-3">
+          <span className="text-xs text-[#737B73]">
+            Consultations: 5:00 PM – 8:30 PM (Mon–Sat)
+          </span>
 
           <button
             onClick={() => {
-              onBookService(service.name);
+              onEnquire(service.name);
               onClose();
             }}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-600/30 transition-all"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-xs font-medium text-white bg-[#29483A] hover:bg-[#1E332A] transition-colors flex items-center justify-center gap-2"
           >
-            <Calendar className="w-4 h-4" />
-            Book an Appointment for {service.name}
+            <Calendar className="w-3.5 h-3.5" />
+            Enquire About {service.name}
           </button>
         </div>
 

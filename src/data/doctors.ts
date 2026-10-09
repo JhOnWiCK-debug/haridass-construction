@@ -1,8 +1,7 @@
-export interface Doctor {
+export interface TeamMember {
   id: string;
   name: string;
-  title: string;
-  role: "founder" | "consultant";
+  role: "Chief Dentist" | "Specialist Consultant" | "Clinical Staff";
   specialty: string;
   qualifications?: string;
   experience?: string;
@@ -14,13 +13,12 @@ export interface Doctor {
   bioSummary: string;
 }
 
-export const DOCTORS: Doctor[] = [
+export const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "dr-krishnapriya",
     name: "Dr. Krishnapriya G",
-    title: "Founder & Chief Dentist",
-    role: "founder",
-    specialty: "Rotary Endodontist",
+    role: "Chief Dentist",
+    specialty: "Rotary Endodontist & Chief Dentist",
     qualifications: "IDA Certified | Clinical Research Professional",
     experience: "12 Years of Clinical Practice",
     awards: ["Anbu Maruthuvar Awardee"],
@@ -29,54 +27,72 @@ export const DOCTORS: Doctor[] = [
     hasPhoto: true,
     location: "Chennai",
     bioSummary:
-      "Founder and Chief Dentist at Jaksh's Dental Junction with 12 years of clinical practice in Chennai. Specialized Rotary Endodontist, IDA Certified, Clinical Research Professional, and Anbu Maruthuvar Awardee dedicated to compassionate and precise dental care.",
+      "Founder and Chief Dentist at Jaksh's Dental Junction with 12 years of clinical practice. Specialist Rotary Endodontist, IDA Certified, Clinical Research Professional, and Anbu Maruthuvar Awardee focusing on patient comfort and gentle, restorative dental treatments.",
   },
   {
     id: "dr-shankar-guhan",
     name: "Dr. Shankar Guhan",
-    title: "Consultant Specialist",
-    role: "consultant",
+    role: "Specialist Consultant",
     specialty: "Oral & Maxillofacial Surgeon & Implantologist",
     image: "/images/dental/dr-shankar-guhan.jpg",
     hasPhoto: true,
     location: "Chennai",
     bioSummary:
-      "Specialist Consultant in Oral & Maxillofacial Surgery and Dental Implantology, providing advanced surgical extractions, dental implants, and facial trauma solutions.",
+      "Consultant in Oral & Maxillofacial Surgery and Dental Implantology, managing complex extractions, bone grafting, and dental implant placements.",
   },
   {
     id: "dr-preethi",
     name: "Dr. Preethi",
-    title: "Consultant Specialist",
-    role: "consultant",
+    role: "Specialist Consultant",
     specialty: "Orthodontics & Dentofacial Orthopedics",
     image: "/images/dental/dr-preethi.jpg",
     hasPhoto: true,
     location: "Chennai",
     bioSummary:
-      "Specialist Consultant in Orthodontics & Dentofacial Orthopedics, focusing on smile alignment, braces, clear aligners, and bite correction for patients of all ages.",
+      "Consultant Orthodontist focusing on dentofacial alignment, traditional braces, and clear aligner therapies for teenagers and adults.",
   },
   {
     id: "dr-archana",
     name: "Dr. Archana",
-    title: "Consultant Specialist",
-    role: "consultant",
-    specialty: "Periodontist",
-    image: undefined,
-    hasPhoto: false,
+    role: "Specialist Consultant",
+    specialty: "Periodontist Consultant",
+    image: "/images/dental/doctor-consultant-female.jpg",
+    hasPhoto: true,
     location: "Chennai",
     bioSummary:
-      "Specialist Consultant Periodontist focusing on gum health, treatment of periodontal diseases, specialized gum surgeries, and preventive oral health maintenance.",
+      "Consultant Periodontist specialising in gum disease therapy, periodontal regeneration, and supportive maintenance for long-term tooth retention.",
+  },
+  {
+    id: "dr-taher",
+    name: "Dr. Taher Ahmed",
+    role: "Specialist Consultant",
+    specialty: "Endodontist",
+    image: "/images/dental/dr-taher-ahmed.jpg",
+    hasPhoto: true,
+    location: "Chennai",
+    bioSummary:
+      "Consultant Endodontist concentrating on precision root canal treatments, endodontic retreatment, and conservative tooth preservation.",
   },
   {
     id: "dr-sindhuja",
     name: "Dr. Sindhuja",
-    title: "Consultant Specialist",
-    role: "consultant",
+    role: "Specialist Consultant",
     specialty: "Pedodontist",
     image: undefined,
     hasPhoto: false,
     location: "Chennai",
     bioSummary:
-      "Specialist Consultant Pedodontist dedicated to pediatric oral healthcare, gentle preventive dentistry, and positive dental experiences for infants, children, and teens.",
+      "Consultant Pedodontist providing gentle, child-centred oral care, early habit interception, and positive early clinical experiences for young patients.",
+  },
+  {
+    id: "mrs-ramya",
+    name: "Mrs. Ramya",
+    role: "Clinical Staff",
+    specialty: "Dental Nurse",
+    image: "/images/dental/nurse-ramya.jpg",
+    hasPhoto: true,
+    location: "Chennai",
+    bioSummary:
+      "Dedicated dental nurse supporting patient comfort, chairside clinical assistance, and stringent operatory sterilisation protocols.",
   },
 ];

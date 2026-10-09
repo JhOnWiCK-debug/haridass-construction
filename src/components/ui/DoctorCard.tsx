@@ -2,40 +2,43 @@
 
 import React from "react";
 import Image from "next/image";
-import { Doctor } from "@/data/doctors";
-import { Calendar, Award, CheckCircle2, Shield, User, MapPin } from "lucide-react";
+import { TeamMember } from "@/data/doctors";
+import { Award, Shield, Check } from "lucide-react";
 
 interface DoctorCardProps {
-  doctor: Doctor;
-  onBook: (doctorName: string) => void;
+  member: TeamMember;
 }
 
-export const DoctorCard: React.FC<DoctorCardProps> = ({ doctor, onBook }) => {
+export const DoctorCard: React.FC<DoctorCardProps> = ({ member }) => {
   return (
-    <div className="clinic-card-hover flex flex-col h-full bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden group">
+    <div className="bg-[#FFFDF9] rounded-2xl border border-[#E2E4DA] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-[#B8C7B2] hover:shadow-xs">
       
-      {/* Top Image or Avatar Header */}
-      <div className="relative aspect-4/3 w-full bg-gradient-to-br from-emerald-50 via-slate-50 to-emerald-100/40 overflow-hidden">
-        {doctor.hasPhoto && doctor.image ? (
+      {/* Photo Frame or Refined Typographic Header */}
+      <div className="relative aspect-4/5 w-full bg-[#E7EDE3]/40 overflow-hidden">
+        {member.hasPhoto && member.image ? (
           <Image
-            src={doctor.image}
-            alt={`${doctor.name} - ${doctor.specialty} at Jaksh's Dental Junction`}
+            src={member.image}
+            alt={`${member.name} - ${member.specialty} at Jaksh's Dental Junction`}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-104"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-cover object-top transition-transform duration-500 hover:scale-102"
           />
         ) : (
-          /* Respectful placeholder for doctors without photo */
-          <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-emerald-50 to-emerald-100/50">
-            <div className="w-20 h-20 rounded-full bg-white shadow-sm border border-emerald-200 flex items-center justify-center text-emerald-700 font-bold text-2xl mb-2">
-              {doctor.name
+          /* Neutral, elegant portrait-free placeholder for members without supplied photo */
+          <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#F0F3EC]">
+            <div className="w-16 h-16 rounded-full bg-[#E7EDE3] border border-[#E2E4DA] flex items-center justify-center text-[#29483A] font-editorial text-2xl mb-3">
+              {member.name
                 .replace("Dr. ", "")
+                .replace("Mrs. ", "")
                 .split(" ")
                 .map((n) => n[0])
                 .join("")}
             </div>
-            <span className="text-xs font-semibold text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full">
-              {doctor.specialty}
+            <span className="text-[11px] font-medium text-[#737B73] uppercase tracking-wider">
+              {member.role}
+            </span>
+            <span className="text-xs font-serif text-[#1E332A] mt-1">
+              Consultant Profile
             </span>
           </div>
         )}
@@ -43,82 +46,63 @@ export const DoctorCard: React.FC<DoctorCardProps> = ({ doctor, onBook }) => {
         {/* Role badge */}
         <div className="absolute top-3 left-3">
           <span
-            className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold shadow-xs ${
-              doctor.role === "founder"
-                ? "bg-emerald-600 text-white"
-                : "bg-white/95 text-slate-800 border border-slate-200"
+            className={`inline-block px-2.5 py-0.5 rounded text-[10px] font-medium tracking-wide ${
+              member.role === "Chief Dentist"
+                ? "bg-[#29483A] text-white"
+                : "bg-[#FFFDF9]/95 text-[#29483A] border border-[#E2E4DA]"
             }`}
           >
-            {doctor.role === "founder" && <Award className="w-3.5 h-3.5 text-amber-300" />}
-            {doctor.title}
-          </span>
-        </div>
-
-        {/* Location tag */}
-        <div className="absolute top-3 right-3">
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-white/90 text-slate-700 shadow-2xs">
-            <MapPin className="w-3 h-3 text-emerald-600" />
-            {doctor.location}
+            {member.role}
           </span>
         </div>
       </div>
 
-      {/* Card Content Body */}
-      <div className="p-6 flex flex-col flex-1 justify-between">
-        <div className="space-y-3">
+      {/* Member Details */}
+      <div className="p-5 flex flex-col flex-1 justify-between space-y-4">
+        <div className="space-y-2">
           <div>
-            <h3 className="text-xl font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
-              {doctor.name}
+            <h3 className="font-editorial text-xl text-[#1E332A] font-normal tracking-tight">
+              {member.name}
             </h3>
-            <p className="text-sm font-semibold text-emerald-700 mt-0.5">
-              {doctor.specialty}
+            <p className="text-xs font-medium text-[#29483A] mt-0.5">
+              {member.specialty}
             </p>
           </div>
 
-          {/* Experience & Verified Credentials if provided */}
-          {doctor.experience && (
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200/60">
-              <Shield className="w-3.5 h-3.5 text-emerald-600" />
-              {doctor.experience}
+          {/* Verified Qualifications / Experience if supplied */}
+          {member.experience && (
+            <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#F0F3EC] text-[#29483A] text-[11px] font-medium border border-[#E2E4DA]">
+              <Shield className="w-3 h-3 text-[#29483A]" />
+              <span>{member.experience}</span>
             </div>
           )}
 
-          {doctor.qualifications && (
-            <p className="text-xs font-medium text-slate-600 bg-slate-50 p-2 rounded-xl border border-slate-100">
-              {doctor.qualifications}
+          {member.qualifications && (
+            <p className="text-[11px] text-[#737B73] bg-[#F8F6F0] p-2 rounded border border-[#E2E4DA]/60">
+              {member.qualifications}
             </p>
           )}
 
-          {doctor.awards && doctor.awards.length > 0 && (
-            <div className="flex flex-wrap gap-1.5">
-              {doctor.awards.map((award, i) => (
+          {member.awards && member.awards.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {member.awards.map((award, i) => (
                 <span
                   key={i}
-                  className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 text-xs font-semibold border border-amber-200/70"
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#E7EDE3] text-[#1E332A] text-[10px] font-medium"
                 >
-                  <Award className="w-3 h-3 text-amber-600" />
+                  <Award className="w-3 h-3 text-[#29483A]" />
                   {award}
                 </span>
               ))}
             </div>
           )}
 
-          <p className="text-xs text-slate-500 leading-relaxed pt-1">
-            {doctor.bioSummary}
+          <p className="text-xs text-[#737B73] leading-relaxed pt-1">
+            {member.bioSummary}
           </p>
         </div>
 
-        {/* CTA Button */}
-        <div className="pt-6 mt-4 border-t border-slate-100">
-          <button
-            onClick={() => onBook(doctor.name)}
-            className="w-full py-2.5 px-4 rounded-xl text-sm font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-600 hover:text-white border border-emerald-200/80 transition-all duration-200 flex items-center justify-center gap-2 group-hover:border-emerald-500"
-          >
-            <Calendar className="w-4 h-4" />
-            Book with {doctor.name.split(" ")[1]}
-          </button>
-        </div>
-
+        {/* Note: Individual appointment buttons removed as explicitly requested by client */}
       </div>
 
     </div>
