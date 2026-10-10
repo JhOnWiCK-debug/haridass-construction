@@ -18,7 +18,7 @@ const dmSans = DM_Sans({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#29483A",
+  themeColor: "#176B57",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
@@ -125,7 +125,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${cormorant.variable} ${dmSans.variable} font-sans bg-[#F8F6F0] text-[#29342D] min-h-screen antialiased`}
+        className={`${cormorant.variable} ${dmSans.variable} font-sans bg-[#F7F5EF] text-[#18332E] min-h-screen antialiased`}
       >
         {children}
       </body>

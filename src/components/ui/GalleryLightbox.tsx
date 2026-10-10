@@ -60,7 +60,7 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#1E332A]/90 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#18332E]/92 backdrop-blur-md animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
       aria-labelledby="lightbox-title"
@@ -69,7 +69,7 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
       {/* Top Controls */}
       <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-white z-20 max-w-6xl mx-auto">
         <div className="flex items-center gap-3">
-          <span className="text-xs text-[#E7EDE3] bg-white/10 px-2.5 py-1 rounded border border-white/10">
+          <span className="text-xs text-[#EEF5EF] bg-white/10 px-2.5 py-1 rounded border border-white/10">
             {item.category}
           </span>
           <span className="text-xs text-white/70">
@@ -133,11 +133,11 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
 
         {/* Mobile controls */}
         <div className="flex sm:hidden items-center justify-center gap-6 mt-2 pt-2 border-t border-white/10 text-xs">
-          <button onClick={handlePrev} className="text-[#E7EDE3] underline">
+          <button onClick={handlePrev} className="text-[#EEF5EF] underline">
             Previous
           </button>
           <span>{currentIndex + 1} / {items.length}</span>
-          <button onClick={handleNext} className="text-[#E7EDE3] underline">
+          <button onClick={handleNext} className="text-[#EEF5EF] underline">
             Next
           </button>
         </div>

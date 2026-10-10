@@ -64,8 +64,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? "bg-[#FFFDF9]/95 backdrop-blur-md border-b border-[#DCE5D8] py-3.5 shadow-xs"
-            : "bg-[#F8F6F0]/90 backdrop-blur-xs border-b border-[#DCE5D8]/60 py-4"
+            ? "bg-[#FFFFFF]/95 backdrop-blur-md border-b border-[#D9E6DE] py-3.5 shadow-xs"
+            : "bg-[#F7F5EF]/90 backdrop-blur-xs border-b border-[#D9E6DE]/60 py-4"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
             <Link
               href="#hero"
               onClick={(e) => handleNavClick(e, "#hero")}
-              className="focus:outline-none focus:ring-1 focus:ring-[#29483A] rounded-lg"
+              className="focus:outline-none focus:ring-1 focus:ring-[#176B57] rounded-lg"
               aria-label="Jaksh's Dental Junction Home"
             >
               <ClinicLogo size="md" />
@@ -88,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-sm font-medium text-[#29342D]/80 hover:text-[#29483A] transition-colors tracking-wide"
+                  className="text-sm font-medium text-[#18332E]/80 hover:text-[#176B57] transition-colors tracking-wide"
                 >
                   {link.name}
                 </a>
@@ -102,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
                 href={CLINIC_INFO.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-[#737B73] hover:text-[#29483A] transition-colors rounded-full hover:bg-[#E7EDE3]/50"
+                className="p-2 text-[#65756F] hover:text-[#176B57] transition-colors rounded-full hover:bg-[#EEF5EF]"
                 aria-label="Visit Jaksh's Dental Junction on Instagram"
               >
                 <InstagramIcon className="w-4 h-4" />
@@ -111,17 +111,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
               {/* Discreet Phone */}
               <a
                 href={CLINIC_INFO.phone}
-                className="text-xs font-medium text-[#29483A] hover:text-[#1E332A] transition-colors flex items-center gap-1.5"
+                className="text-xs font-medium text-[#176B57] hover:text-[#125544] transition-colors flex items-center gap-1.5"
                 aria-label={`Call Clinic at ${CLINIC_INFO.phoneDisplay}`}
               >
-                <Phone className="w-3.5 h-3.5 text-[#737B73]" />
+                <Phone className="w-3.5 h-3.5 text-[#65756F]" />
                 <span className="hidden xl:inline">{CLINIC_INFO.phoneDisplay}</span>
               </a>
 
               {/* Refined Book Appointment Button */}
               <button
                 onClick={handleBookClick}
-                className="px-4 py-2 rounded-lg text-xs font-medium tracking-wide text-white bg-[#29483A] hover:bg-[#1E332A] active:bg-[#1E332A] transition-all shadow-xs"
+                className="px-5 py-2.5 rounded-full text-xs font-medium tracking-wide text-white bg-[#176B57] hover:bg-[#125544] active:bg-[#125544] transition-all shadow-xs"
               >
                 Book an Appointment
               </button>
@@ -133,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
                 href={CLINIC_INFO.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-[#737B73] hover:text-[#29483A]"
+                className="p-2 text-[#65756F] hover:text-[#176B57]"
                 aria-label="Instagram"
               >
                 <InstagramIcon className="w-4 h-4" />
@@ -141,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
 
               <a
                 href={CLINIC_INFO.phone}
-                className="p-2 text-[#29483A] hover:bg-[#E7EDE3]/40 rounded-lg"
+                className="p-2 text-[#176B57] hover:bg-[#EEF5EF] rounded-lg"
                 aria-label="Call clinic"
               >
                 <Phone className="w-4 h-4" />
@@ -149,7 +149,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
 
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 text-[#29342D] hover:bg-[#E7EDE3]/40 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+                className="p-2 text-[#18332E] hover:bg-[#EEF5EF] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#176B57]"
                 aria-label="Toggle navigation"
                 aria-expanded={isMobileMenuOpen}
               >
@@ -165,17 +165,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div
-            className="fixed inset-0 bg-[#1E332A]/30 backdrop-blur-xs transition-opacity"
+            className="fixed inset-0 bg-[#18332E]/40 backdrop-blur-xs transition-opacity"
             onClick={() => setIsMobileMenuOpen(false)}
           />
 
-          <div className="fixed inset-y-0 right-0 max-w-xs w-full bg-[#FFFDF9] shadow-xl p-6 flex flex-col justify-between overflow-y-auto border-l border-[#DCE5D8] z-10 animate-in slide-in-from-right duration-200">
+          <div className="fixed inset-y-0 right-0 max-w-xs w-full bg-[#FFFFFF] shadow-xl p-6 flex flex-col justify-between overflow-y-auto border-l border-[#D9E6DE] z-10 animate-in slide-in-from-right duration-200">
             <div>
-              <div className="flex items-center justify-between pb-4 border-b border-[#DCE5D8]">
+              <div className="flex items-center justify-between pb-4 border-b border-[#D9E6DE]">
                 <ClinicLogo size="sm" />
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-1.5 text-[#737B73] hover:text-[#29483A]"
+                  className="p-1.5 text-[#65756F] hover:text-[#176B57]"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5" />
@@ -188,7 +188,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="px-3 py-2.5 rounded-lg text-sm font-medium text-[#29342D] hover:bg-[#F0F3EC] transition-colors"
+                    className="px-3 py-2.5 rounded-lg text-sm font-medium text-[#18332E] hover:bg-[#EEF5EF] transition-colors"
                   >
                     {link.name}
                   </a>
@@ -196,23 +196,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAppointmentModal }) => {
               </nav>
             </div>
 
-            <div className="pt-6 border-t border-[#E2E4DA] space-y-3">
+            <div className="pt-6 border-t border-[#D9E6DE] space-y-3">
               <button
                 onClick={handleBookClick}
-                className="w-full py-2.5 rounded-lg text-center text-xs font-medium text-white bg-[#29483A] hover:bg-[#1E332A] transition-colors"
+                className="w-full py-2.5 rounded-full text-center text-xs font-medium text-white bg-[#176B57] hover:bg-[#125544] transition-colors"
               >
                 Book an Appointment
               </button>
 
               <a
                 href={CLINIC_INFO.phone}
-                className="w-full py-2.5 rounded-lg text-center text-xs font-medium text-[#29483A] bg-[#F0F3EC] hover:bg-[#E7EDE3] border border-[#E2E4DA] flex items-center justify-center gap-1.5 transition-colors"
+                className="w-full py-2.5 rounded-full text-center text-xs font-medium text-[#176B57] bg-[#EEF5EF] hover:bg-[#EEF5EF]/80 border border-[#D9E6DE] flex items-center justify-center gap-1.5 transition-colors"
               >
                 <Phone className="w-3.5 h-3.5" />
                 Call {CLINIC_INFO.phoneDisplay}
               </a>
 
-              <div className="pt-2 text-[11px] text-[#737B73] text-center">
+              <div className="pt-2 text-[11px] text-[#65756F] text-center">
                 Mon–Sat: 5:00 PM – 8:30 PM &nbsp;•&nbsp; Sunday Closed
               </div>
             </div>

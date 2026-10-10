@@ -16,21 +16,21 @@ export const GallerySection: React.FC = () => {
   };
 
   return (
-    <section id="gallery" className="py-20 lg:py-28 bg-[#FFFDF9] border-b border-[#DCE5D8]">
+    <section id="gallery" className="py-20 lg:py-28 bg-[#EEF5EF] border-b border-[#D9E6DE]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E7EEE4] border border-[#B8CBB8] text-xs mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#29483A]" />
-            <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#203B2F]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#D9E6DE] text-xs mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#176B57]" />
+            <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#18332E]">
               Clinic Environment
             </span>
           </div>
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#203B2F] font-normal tracking-tight mt-1 leading-tight">
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#18332E] font-normal tracking-tight mt-1 leading-tight">
             Inside Jaksh&apos;s Dental Junction.
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[#344139] leading-relaxed font-normal">
+          <p className="mt-3 text-sm sm:text-base text-[#65756F] leading-relaxed font-normal">
             Authentic photography from our clinic on Valayapathi Salai, Mogappair East. Designed for cleanliness, unhurried patient consultations, and clinical precision.
           </p>
         </div>
@@ -41,7 +41,7 @@ export const GallerySection: React.FC = () => {
           {/* Main Large Feature Image: Operatory */}
           <div
             onClick={() => setSelectedItem(CLINIC_GALLERY[2] || CLINIC_GALLERY[0])}
-            className="md:col-span-8 group relative rounded-2xl overflow-hidden border border-[#DCE5D8] bg-[#F8F6F0] cursor-pointer aspect-16/10 sm:aspect-16/9"
+            className="md:col-span-8 group relative rounded-2xl overflow-hidden border border-[#D9E6DE] bg-[#FFFFFF] cursor-pointer aspect-16/10 sm:aspect-16/9 shadow-xs"
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
@@ -56,10 +56,10 @@ export const GallerySection: React.FC = () => {
               sizes="(max-width: 1024px) 100vw, 66vw"
               className="object-cover transition-transform duration-500 group-hover:scale-102"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#18332E]/80 via-transparent to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
             <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white">
               <div>
-                <p className="text-xs uppercase tracking-wider text-[#E7EDE3]">
+                <p className="text-xs uppercase tracking-wider text-[#EEF5EF]">
                   Operatory Suite
                 </p>
                 <h3 className="text-sm sm:text-base font-medium">
@@ -75,7 +75,7 @@ export const GallerySection: React.FC = () => {
           {/* Side Tall Image: Exterior Signboard at Night */}
           <div
             onClick={() => setSelectedItem(CLINIC_GALLERY[0])}
-            className="md:col-span-4 group relative rounded-2xl overflow-hidden border border-[#DCE5D8] bg-[#F8F6F0] cursor-pointer aspect-4/3 md:aspect-auto"
+            className="md:col-span-4 group relative rounded-2xl overflow-hidden border border-[#D9E6DE] bg-[#FFFFFF] cursor-pointer aspect-4/3 md:aspect-auto shadow-xs"
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
@@ -90,9 +90,9 @@ export const GallerySection: React.FC = () => {
               sizes="(max-width: 1024px) 100vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-102"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#18332E]/80 via-transparent to-transparent opacity-85" />
             <div className="absolute bottom-4 left-4 right-4 text-white">
-              <p className="text-xs uppercase tracking-wider text-[#E7EDE3]">
+              <p className="text-xs uppercase tracking-wider text-[#EEF5EF]">
                 Exterior Signboard
               </p>
               <h3 className="text-sm font-medium">
@@ -104,7 +104,7 @@ export const GallerySection: React.FC = () => {
           {/* Lower Row: 3 Varied Images */}
           <div
             onClick={() => setSelectedItem(CLINIC_GALLERY[5])}
-            className="md:col-span-4 group relative rounded-2xl overflow-hidden border border-[#DCE5D8] bg-[#F8F6F0] cursor-pointer aspect-4/3"
+            className="md:col-span-4 group relative rounded-2xl overflow-hidden border border-[#D9E6DE] bg-[#FFFFFF] cursor-pointer aspect-4/3 shadow-xs"
             role="button"
             tabIndex={0}
             aria-label="View waiting lounge in detail"
@@ -116,16 +116,16 @@ export const GallerySection: React.FC = () => {
               sizes="(max-width: 1024px) 100vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-102"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#18332E]/80 via-transparent to-transparent opacity-85" />
             <div className="absolute bottom-4 left-4 right-4 text-white">
-              <p className="text-[11px] uppercase tracking-wider text-[#E7EDE3]">Reception</p>
+              <p className="text-[11px] uppercase tracking-wider text-[#EEF5EF]">Reception</p>
               <h3 className="text-xs sm:text-sm font-medium">Patient Waiting Lounge</h3>
             </div>
           </div>
 
           <div
             onClick={() => setSelectedItem(CLINIC_GALLERY[4])}
-            className="md:col-span-4 group relative rounded-2xl overflow-hidden border border-[#DCE5D8] bg-[#F8F6F0] cursor-pointer aspect-4/3"
+            className="md:col-span-4 group relative rounded-2xl overflow-hidden border border-[#D9E6DE] bg-[#FFFFFF] cursor-pointer aspect-4/3 shadow-xs"
             role="button"
             tabIndex={0}
             aria-label="View pediatric shark divider in detail"
@@ -137,16 +137,16 @@ export const GallerySection: React.FC = () => {
               sizes="(max-width: 1024px) 100vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-102"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#18332E]/80 via-transparent to-transparent opacity-85" />
             <div className="absolute bottom-4 left-4 right-4 text-white">
-              <p className="text-[11px] uppercase tracking-wider text-[#E7EDE3]">Child-Friendly</p>
+              <p className="text-[11px] uppercase tracking-wider text-[#EEF5EF]">Child-Friendly</p>
               <h3 className="text-xs sm:text-sm font-medium">Shark Mural Partition</h3>
             </div>
           </div>
 
           <div
             onClick={() => setSelectedItem(CLINIC_GALLERY[6])}
-            className="md:col-span-4 group relative rounded-2xl overflow-hidden border border-[#DCE5D8] bg-[#F8F6F0] cursor-pointer aspect-4/3"
+            className="md:col-span-4 group relative rounded-2xl overflow-hidden border border-[#D9E6DE] bg-[#FFFFFF] cursor-pointer aspect-4/3 shadow-xs"
             role="button"
             tabIndex={0}
             aria-label="View architectural ceiling light in detail"
@@ -158,9 +158,9 @@ export const GallerySection: React.FC = () => {
               sizes="(max-width: 1024px) 100vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-102"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#18332E]/80 via-transparent to-transparent opacity-85" />
             <div className="absolute bottom-4 left-4 right-4 text-white">
-              <p className="text-[11px] uppercase tracking-wider text-[#E7EDE3]">Architectural</p>
+              <p className="text-[11px] uppercase tracking-wider text-[#EEF5EF]">Architectural</p>
               <h3 className="text-xs sm:text-sm font-medium">Custom Tooth Ceiling Installation</h3>
             </div>
           </div>

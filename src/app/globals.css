@@ -1,30 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --color-background: #F8F6F0;
-  --color-surface: #FFFDF9;
-  --color-sage: #B8CBB8;
-  --color-sage-pale: #E7EEE4;
-  --color-sage-muted: #A9C0A7;
-  --color-forest: #29483A;
-  --color-forest-dark: #203B2F;
-  --color-text: #344139;
-  --color-muted: #737B73;
-  --color-border: #DCE5D8;
+  --color-background: #F7F5EF;
+  --color-surface: #FFFFFF;
+  --color-section-soft: #EEF5EF;
+  --color-brand-green: #176B57;
+  --color-sage-muted: #5F9B82;
+  --color-accent-gold: #C5A56A;
+  --color-text-primary: #18332E;
+  --color-text-secondary: #65756F;
+  --color-border: #D9E6DE;
   --color-white: #FFFFFF;
 }
 
 @theme {
-  --color-ivory: #F8F6F0;
-  --color-surface: #FFFDF9;
-  --color-sage: #B8CBB8;
-  --color-sage-pale: #E7EEE4;
-  --color-sage-muted: #A9C0A7;
-  --color-forest: #29483A;
-  --color-forest-dark: #203B2F;
-  --color-clinic-text: #344139;
-  --color-clinic-muted: #737B73;
-  --color-clinic-border: #DCE5D8;
+  --color-ivory: #F7F5EF;
+  --color-surface: #FFFFFF;
+  --color-sage-soft: #EEF5EF;
+  --color-brand-green: #176B57;
+  --color-sage-muted: #5F9B82;
+  --color-accent-gold: #C5A56A;
+  --color-text-primary: #18332E;
+  --color-text-secondary: #65756F;
+  --color-border: #D9E6DE;
   --font-serif: var(--font-cormorant), Georgia, serif;
   --font-sans: var(--font-dmsans), system-ui, sans-serif;
 }
@@ -45,13 +43,13 @@ body {
   font-family: var(--font-dmsans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  selection-background-color: #E7EEE4;
-  selection-color: #203B2F;
+  selection-background-color: #EEF5EF;
+  selection-color: #176B57;
 }
 
 ::selection {
-  background: #E7EEE4;
-  color: #203B2F;
+  background: #EEF5EF;
+  color: #176B57;
 }
 
 /* Editorial Serif Headings */
@@ -66,54 +64,55 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F8F6F0;
+  background: #F7F5EF;
 }
 ::-webkit-scrollbar-thumb {
-  background: #B8CBB8;
+  background: #5F9B82;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #29483A;
+  background: #176B57;
 }
 
 /* Editorial hairline borders */
 .border-subtle {
-  border-color: #DCE5D8;
+  border-color: #D9E6DE;
 }
 
 /* Subtle card styling — warm, calm, restrained */
 .editorial-card {
-  background-color: #FFFDF9;
-  border: 1px solid #DCE5D8;
+  background-color: #FFFFFF;
+  border: 1px solid #D9E6DE;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .editorial-card:hover {
-  border-color: #A9C0A7;
-  box-shadow: 0 8px 24px -6px rgba(41, 72, 58, 0.06);
+  border-color: #5F9B82;
+  box-shadow: 0 10px 28px -8px rgba(24, 51, 46, 0.08);
 }
 
 /* Restrained buttons */
-.btn-forest {
-  background-color: #29483A;
+.btn-primary {
+  background-color: #176B57;
   color: #FFFFFF;
   transition: all 0.25s ease;
 }
 
-.btn-forest:hover {
-  background-color: #203B2F;
+.btn-primary:hover {
+  background-color: #125544;
 }
 
-.btn-outline-forest {
-  background-color: transparent;
-  color: #29483A;
-  border: 1px solid #B8CBB8;
+.btn-outline {
+  background-color: #FFFFFF;
+  color: #18332E;
+  border: 1px solid #D9E6DE;
   transition: all 0.25s ease;
 }
 
-.btn-outline-forest:hover {
-  background-color: #E7EEE4;
-  border-color: #29483A;
+.btn-outline:hover {
+  background-color: #EEF5EF;
+  border-color: #176B57;
+  color: #176B57;
 }
 
 /* Focus visibility for accessibility */
@@ -122,7 +121,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #29483A;
+  outline: 2px solid #176B57;
   outline-offset: 2px;
 }
 

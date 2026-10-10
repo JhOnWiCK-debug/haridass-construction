@@ -38,22 +38,22 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   };
 
   return (
-    <section id="treatments" className="py-20 lg:py-28 bg-[#E7EEE4]/40 border-b border-[#DCE5D8]">
+    <section id="treatments" className="py-20 lg:py-28 bg-[#F7F5EF] border-b border-[#D9E6DE]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E7EEE4] border border-[#B8CBB8] text-xs mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#29483A]" />
-              <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#203B2F]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF5EF] border border-[#D9E6DE] text-xs mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#176B57]" />
+              <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#18332E]">
                 Clinical Services
               </span>
             </div>
-            <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#203B2F] font-normal tracking-tight mt-1 leading-tight">
+            <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#18332E] font-normal tracking-tight mt-1 leading-tight">
               Treatments & dental care areas.
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-[#344139] leading-relaxed font-normal">
+            <p className="mt-3 text-sm sm:text-base text-[#65756F] leading-relaxed font-normal">
               A structured directory of our eleven dental care categories. Select any treatment to read detailed consultation information and preparation guidance.
             </p>
           </div>
@@ -64,10 +64,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors ${
                   activeCategory === cat
-                    ? "bg-[#29483A] text-white shadow-2xs"
-                    : "bg-[#FFFDF9] text-[#344139] hover:bg-[#E7EEE4] hover:text-[#203B2F] border border-[#DCE5D8]"
+                    ? "bg-[#176B57] text-white shadow-2xs"
+                    : "bg-[#FFFFFF] text-[#65756F] hover:bg-[#EEF5EF] hover:text-[#18332E] border border-[#D9E6DE]"
                 }`}
               >
                 {cat}
@@ -77,12 +77,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         </div>
 
         {/* Editorial Treatment Directory (Numbered List / Table Format) */}
-        <div className="bg-[#FFFDF9] rounded-2xl border border-[#DCE5D8] divide-y divide-[#DCE5D8] overflow-hidden shadow-xs">
+        <div className="bg-[#FFFFFF] rounded-2xl border border-[#D9E6DE] divide-y divide-[#D9E6DE] overflow-hidden shadow-xs">
           {filteredServices.map((service) => (
             <div
               key={service.id}
               onClick={() => setSelectedService(service)}
-              className="group p-5 sm:p-6 transition-all hover:bg-[#E7EEE4]/60 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 border-l-3 border-l-transparent hover:border-l-[#A9C0A7]"
+              className="group p-5 sm:p-6 transition-all hover:bg-[#EEF5EF]/60 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 border-l-3 border-l-transparent hover:border-l-[#5F9B82]"
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
@@ -95,30 +95,30 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             >
               {/* Number & Name */}
               <div className="flex items-baseline gap-4 sm:gap-6 md:w-5/12">
-                <span className="font-mono text-xs text-[#737B73] group-hover:text-[#203B2F] transition-colors shrink-0">
+                <span className="font-mono text-xs text-[#65756F] group-hover:text-[#18332E] transition-colors shrink-0">
                   {service.number}
                 </span>
                 <div>
-                  <h3 className="text-base sm:text-lg font-medium text-[#203B2F] group-hover:text-[#29483A] transition-colors">
+                  <h3 className="text-base sm:text-lg font-medium text-[#18332E] group-hover:text-[#176B57] transition-colors">
                     {service.name}
                   </h3>
-                  <span className="inline-block md:hidden text-[11px] text-[#737B73] mt-0.5">
+                  <span className="inline-block md:hidden text-[11px] text-[#65756F] mt-0.5">
                     {service.category}
                   </span>
                 </div>
               </div>
 
               {/* Summary Description */}
-              <p className="text-xs sm:text-sm text-[#737B73] md:w-5/12 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#65756F] md:w-5/12 leading-relaxed">
                 {service.shortSummary}
               </p>
 
               {/* Action Indicator */}
-              <div className="flex items-center justify-between md:justify-end gap-3 md:w-2/12 pt-2 md:pt-0 border-t md:border-t-0 border-[#DCE5D8]/60">
-                <span className="hidden md:inline-block text-[11px] text-[#203B2F] bg-[#E7EEE4] px-2.5 py-0.5 rounded border border-[#DCE5D8]">
+              <div className="flex items-center justify-between md:justify-end gap-3 md:w-2/12 pt-2 md:pt-0 border-t md:border-t-0 border-[#D9E6DE]/60">
+                <span className="hidden md:inline-block text-[11px] text-[#18332E] bg-[#EEF5EF] px-2.5 py-0.5 rounded border border-[#D9E6DE]">
                   {service.category}
                 </span>
-                <span className="text-xs font-medium text-[#29483A] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                <span className="text-xs font-medium text-[#176B57] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
                   <span>View Details</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </span>
@@ -128,14 +128,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         </div>
 
         {/* Footnote on consultation */}
-        <div className="mt-8 p-4 rounded-xl bg-[#FFFDF9] border border-[#DCE5D8] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-[#344139]">
+        <div className="mt-8 p-4 rounded-xl bg-[#FFFFFF] border border-[#D9E6DE] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-[#65756F]">
           <div>
-            <strong className="text-[#203B2F] font-medium">Unsure which care area applies to your symptoms?</strong>{" "}
+            <strong className="text-[#18332E] font-medium">Unsure which care area applies to your symptoms?</strong>{" "}
             A general consultation allows our dental team to assess your oral health and recommend appropriate care.
           </div>
           <button
             onClick={() => handleEnquire("General Consultation")}
-            className="text-xs font-semibold text-[#29483A] hover:underline shrink-0"
+            className="text-xs font-semibold text-[#176B57] hover:underline shrink-0"
           >
             Enquire for a consultation →
           </button>

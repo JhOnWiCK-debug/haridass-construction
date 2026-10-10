@@ -113,32 +113,32 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
       aria-labelledby="booking-modal-title"
     >
       <div
-        className="fixed inset-0 bg-[#1E332A]/40 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-[#18332E]/40 backdrop-blur-xs transition-opacity"
         onClick={onClose}
       />
 
-      <div className="relative w-full max-w-lg bg-[#FFFDF9] rounded-xl shadow-xl border border-[#DCE5D8] overflow-hidden z-10 my-auto animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-lg bg-[#FFFFFF] rounded-2xl shadow-xl border border-[#D9E6DE] overflow-hidden z-10 my-auto animate-in zoom-in-95 duration-200">
         
         {/* Header */}
-        <div className="p-6 bg-[#F8F6F0] border-b border-[#DCE5D8] flex items-start justify-between gap-4">
+        <div className="p-6 bg-[#F7F5EF] border-b border-[#D9E6DE] flex items-start justify-between gap-4">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-wider text-[#737B73] bg-[#E7EDE3] px-2 py-0.5 rounded">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-[#18332E] bg-[#EEF5EF] px-2.5 py-0.5 rounded">
               Mogappair East, Chennai
             </span>
             <h3
               id="booking-modal-title"
-              className="font-editorial text-2xl font-normal text-[#1E332A] mt-1"
+              className="font-editorial text-2xl font-normal text-[#18332E] mt-1"
             >
               Appointment Enquiry
             </h3>
-            <p className="text-xs text-[#737B73] mt-0.5">
+            <p className="text-xs text-[#65756F] mt-0.5">
               Consultation Hours: 5:00 PM – 8:30 PM (Mon–Sat)
             </p>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 text-[#737B73] hover:text-[#1E332A] rounded-lg hover:bg-[#E7EDE3]/50 transition-colors"
+            className="p-1.5 text-[#65756F] hover:text-[#18332E] rounded-lg hover:bg-[#EEF5EF] transition-colors"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -149,19 +149,19 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
         <div className="p-6 sm:p-7 max-h-[75vh] overflow-y-auto">
           {submitted ? (
             <div className="text-center py-6 space-y-4">
-              <div className="w-12 h-12 rounded-full bg-[#E7EDE3] text-[#29483A] mx-auto flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-[#EEF5EF] text-[#176B57] mx-auto flex items-center justify-center">
                 <CheckCircle2 className="w-7 h-7" />
               </div>
-              <h4 className="font-editorial text-xl text-[#1E332A] font-normal">
+              <h4 className="font-editorial text-xl text-[#18332E] font-normal">
                 Enquiry Ready to Forward
               </h4>
-              <p className="text-xs text-[#737B73] max-w-sm mx-auto leading-relaxed">
+              <p className="text-xs text-[#65756F] max-w-sm mx-auto leading-relaxed">
                 Thank you, <strong>{formData.name}</strong>. Forward your request directly via WhatsApp to coordinate available slots with our front desk.
               </p>
 
               <button
                 onClick={handleSendWhatsApp}
-                className="w-full py-2.5 px-4 rounded-lg text-xs font-medium text-white bg-[#29483A] hover:bg-[#1E332A] transition-all flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 rounded-full text-xs font-medium text-white bg-[#176B57] hover:bg-[#125544] transition-all flex items-center justify-center gap-2 shadow-xs"
               >
                 <MessageSquare className="w-4 h-4" />
                 Send Request via WhatsApp
@@ -169,7 +169,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
 
               <button
                 onClick={onClose}
-                className="w-full py-2 px-4 rounded-lg text-xs text-[#737B73] hover:underline"
+                className="w-full py-2 px-4 rounded-full text-xs text-[#65756F] hover:underline"
               >
                 Close Window
               </button>
@@ -178,7 +178,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name */}
               <div>
-                <label className="block text-xs font-medium text-[#29342D] mb-1">
+                <label className="block text-xs font-medium text-[#18332E] mb-1">
                   Patient Full Name *
                 </label>
                 <input
@@ -186,8 +186,8 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                   placeholder="Patient Name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className={`w-full px-3 py-2 rounded-lg border text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A] ${
-                    errors.name ? "border-[#8F3E37]" : "border-[#DCE5D8]"
+                  className={`w-full px-3 py-2 rounded-xl border text-xs sm:text-sm text-[#18332E] bg-[#FFFFFF] focus:outline-none focus:ring-1 focus:ring-[#176B57] ${
+                    errors.name ? "border-[#8F3E37]" : "border-[#D9E6DE]"
                   }`}
                 />
                 {errors.name && <p className="text-[11px] text-[#8F3E37] mt-1">{errors.name}</p>}
@@ -195,7 +195,7 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
 
               {/* Phone */}
               <div>
-                <label className="block text-xs font-medium text-[#29342D] mb-1">
+                <label className="block text-xs font-medium text-[#18332E] mb-1">
                   Contact Phone Number *
                 </label>
                 <input
@@ -203,8 +203,8 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
                   placeholder="10-digit phone number"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className={`w-full px-3 py-2 rounded-lg border text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A] ${
-                    errors.phone ? "border-[#8F3E37]" : "border-[#DCE5D8]"
+                  className={`w-full px-3 py-2 rounded-xl border text-xs sm:text-sm text-[#18332E] bg-[#FFFFFF] focus:outline-none focus:ring-1 focus:ring-[#176B57] ${
+                    errors.phone ? "border-[#8F3E37]" : "border-[#D9E6DE]"
                   }`}
                 />
                 {errors.phone && <p className="text-[11px] text-[#8F3E37] mt-1">{errors.phone}</p>}
@@ -213,15 +213,15 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
               <div className="grid grid-cols-2 gap-3">
                 {/* Date */}
                 <div>
-                  <label className="block text-xs font-medium text-[#29342D] mb-1">
+                  <label className="block text-xs font-medium text-[#18332E] mb-1">
                     Date *
                   </label>
                   <input
                     type="date"
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    className={`w-full px-3 py-2 rounded-lg border text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A] ${
-                      errors.date ? "border-[#8F3E37]" : "border-[#DCE5D8]"
+                    className={`w-full px-3 py-2 rounded-xl border text-xs sm:text-sm text-[#18332E] bg-[#FFFFFF] focus:outline-none focus:ring-1 focus:ring-[#176B57] ${
+                      errors.date ? "border-[#8F3E37]" : "border-[#D9E6DE]"
                     }`}
                   />
                   {errors.date && <p className="text-[11px] text-[#8F3E37] mt-1">{errors.date}</p>}
@@ -229,13 +229,13 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
 
                 {/* Time */}
                 <div>
-                  <label className="block text-xs font-medium text-[#29342D] mb-1">
+                  <label className="block text-xs font-medium text-[#18332E] mb-1">
                     Evening Slot
                   </label>
                   <select
                     value={formData.time}
                     onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#DCE5D8] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+                    className="w-full px-3 py-2 rounded-xl border border-[#D9E6DE] text-xs sm:text-sm text-[#18332E] bg-[#FFFFFF] focus:outline-none focus:ring-1 focus:ring-[#176B57]"
                   >
                     {timeSlots.map((slot) => (
                       <option key={slot} value={slot}>
@@ -248,13 +248,13 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
 
               {/* Service */}
               <div>
-                <label className="block text-xs font-medium text-[#29342D] mb-1">
+                <label className="block text-xs font-medium text-[#18332E] mb-1">
                   Treatment of Interest
                 </label>
                 <select
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-[#DCE5D8] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+                  className="w-full px-3 py-2 rounded-xl border border-[#D9E6DE] text-xs sm:text-sm text-[#18332E] bg-[#FFFFFF] focus:outline-none focus:ring-1 focus:ring-[#176B57]"
                 >
                   <option value="General Dental Consultation">General Dental Consultation</option>
                   {DENTAL_SERVICES.map((s) => (
@@ -267,22 +267,22 @@ ${formData.message ? `• Note: ${formData.message}` : ""}`;
 
               {/* Message */}
               <div>
-                <label className="block text-xs font-medium text-[#29342D] mb-1">
-                  Notes / Symptoms <span className="text-[#737B73] font-normal">(Optional)</span>
+                <label className="block text-xs font-medium text-[#18332E] mb-1">
+                  Notes / Symptoms <span className="text-[#65756F] font-normal">(Optional)</span>
                 </label>
                 <textarea
                   rows={2}
                   placeholder="Optional note for the doctor..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-[#DCE5D8] text-xs sm:text-sm text-[#29342D] bg-[#FFFDF9] focus:outline-none focus:ring-1 focus:ring-[#29483A]"
+                  className="w-full px-3 py-2 rounded-xl border border-[#D9E6DE] text-xs sm:text-sm text-[#18332E] bg-[#FFFFFF] focus:outline-none focus:ring-1 focus:ring-[#176B57]"
                 />
               </div>
 
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-2.5 rounded-lg text-xs font-medium text-white bg-[#29483A] hover:bg-[#1E332A] transition-all flex items-center justify-center gap-1.5"
+                  className="w-full py-2.5 rounded-full text-xs font-medium text-white bg-[#176B57] hover:bg-[#125544] transition-all flex items-center justify-center gap-1.5 shadow-xs"
                 >
                   <Send className="w-3.5 h-3.5" />
                   Submit Enquiry

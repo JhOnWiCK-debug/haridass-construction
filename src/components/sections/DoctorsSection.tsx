@@ -24,21 +24,21 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
   };
 
   return (
-    <section id="team" className="py-20 lg:py-28 bg-[#F8F6F0] border-b border-[#DCE5D8]">
+    <section id="team" className="py-20 lg:py-28 bg-[#F7F5EF] border-b border-[#D9E6DE]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E7EEE4] border border-[#B8CBB8] text-xs mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#29483A]" />
-            <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#203B2F]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF5EF] border border-[#D9E6DE] text-xs mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#176B57]" />
+            <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#18332E]">
               Clinical Practitioners & Staff
             </span>
           </div>
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#203B2F] font-normal tracking-tight mt-1 leading-tight">
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-[#18332E] font-normal tracking-tight mt-1 leading-tight">
             Meet Your Dental Care Team
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[#344139] leading-relaxed font-normal">
+          <p className="mt-3 text-sm sm:text-base text-[#65756F] leading-relaxed font-normal">
             Led by Founder & Chief Dentist Dr. Krishnapriya G alongside multidisciplinary consultant specialists and dedicated clinical nursing support, providing comprehensive dental care for Mogappair East.
           </p>
         </div>
@@ -51,19 +51,19 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
         </div>
 
         {/* General Appointment CTA After Whole Team Section */}
-        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-[#E7EEE4]/70 border border-[#DCE5D8] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-[#EEF5EF] border border-[#D9E6DE] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <h4 className="font-editorial text-xl sm:text-2xl text-[#203B2F] font-normal">
+            <h4 className="font-editorial text-xl sm:text-2xl text-[#18332E] font-normal">
               Consult with our dental team
             </h4>
-            <p className="text-xs sm:text-sm text-[#344139] mt-1 max-w-xl">
+            <p className="text-xs sm:text-sm text-[#65756F] mt-1 max-w-xl">
               Specialist consultations in endodontics, oral surgery, orthodontics, periodontics, and pediatric care are available by scheduled appointment.
             </p>
           </div>
 
           <button
             onClick={handleGeneralBook}
-            className="px-6 py-3 rounded-lg text-xs sm:text-sm font-medium tracking-wide text-white bg-[#29483A] hover:bg-[#203B2F] transition-all shrink-0 flex items-center gap-2 shadow-xs"
+            className="px-7 py-3 rounded-full text-xs sm:text-sm font-medium tracking-wide text-white bg-[#176B57] hover:bg-[#125544] transition-all shrink-0 flex items-center gap-2 shadow-xs"
           >
             <Calendar className="w-4 h-4" />
             Book an Appointment

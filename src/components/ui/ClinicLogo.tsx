@@ -46,7 +46,7 @@ export const ClinicLogo: React.FC<ClinicLogoProps> = ({
       {variant !== "wordmark" && (
         <div
           className={`${emblemSizes[size]} relative rounded-full overflow-hidden shrink-0 border ${
-            invert ? "border-white/20" : "border-[#DCE5D8]"
+            invert ? "border-white/20" : "border-[#D9E6DE]"
           } bg-white shadow-xs`}
         >
           <Image
@@ -66,14 +66,14 @@ export const ClinicLogo: React.FC<ClinicLogoProps> = ({
           <div className="flex items-baseline gap-1.5">
             <span
               className={`font-editorial ${titleSizes[size]} ${
-                invert ? "text-white" : "text-[#203B2F]"
+                invert ? "text-white" : "text-[#18332E]"
               } tracking-normal`}
             >
               Jaksh&apos;s
             </span>
             <span
               className={`font-sans font-medium uppercase ${junctionSizes[size]} ${
-                invert ? "text-[#E7EEE4]" : "text-[#29483A]"
+                invert ? "text-[#EEF5EF]" : "text-[#176B57]"
               }`}
             >
               Dental Junction
@@ -81,7 +81,7 @@ export const ClinicLogo: React.FC<ClinicLogoProps> = ({
           </div>
           <span
             className={`font-sans ${taglineSizes[size]} ${
-              invert ? "text-[#B8CBB8]" : "text-[#737B73]"
+              invert ? "text-[#5F9B82]" : "text-[#65756F]"
             } mt-1 tracking-wider uppercase text-[9.5px]`}
           >
             Where dentistry & kindness meet

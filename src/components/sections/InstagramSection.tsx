@@ -31,22 +31,22 @@ export const InstagramSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-24 bg-[#E7EEE4]/40 border-b border-[#DCE5D8]">
+    <section className="py-20 lg:py-24 bg-[#EEF5EF] border-b border-[#D9E6DE]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E7EEE4] border border-[#B8CBB8] text-xs mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#29483A]" />
-              <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#203B2F]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#D9E6DE] text-xs mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#176B57]" />
+              <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#18332E]">
                 Social & Community
               </span>
             </div>
-            <h2 className="font-editorial text-3xl sm:text-4xl text-[#203B2F] font-normal tracking-tight mt-1 leading-tight">
+            <h2 className="font-editorial text-3xl sm:text-4xl text-[#18332E] font-normal tracking-tight mt-1 leading-tight">
               Life at Jaksh&apos;s Dental Junction
             </h2>
-            <p className="mt-2 text-sm text-[#344139] font-normal">
+            <p className="mt-2 text-sm text-[#65756F] font-normal">
               Follow our clinic journey, patient education notes, and everyday moments in Mogappair East.
             </p>
           </div>
@@ -55,11 +55,11 @@ export const InstagramSection: React.FC = () => {
             href={CLINIC_INFO.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-medium text-[#203B2F] bg-[#FFFDF9] hover:bg-[#E7EEE4] border border-[#DCE5D8] transition-colors shrink-0 shadow-2xs"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-medium text-[#18332E] bg-[#FFFFFF] hover:bg-[#D9E6DE] border border-[#D9E6DE] transition-colors shrink-0 shadow-2xs"
           >
             <InstagramIcon className="w-3.5 h-3.5" />
             <span>@jakshsdentaljunction</span>
-            <ExternalLink className="w-3 h-3 text-[#29483A]" />
+            <ExternalLink className="w-3 h-3 text-[#176B57]" />
           </a>
         </div>
 
@@ -71,7 +71,7 @@ export const InstagramSection: React.FC = () => {
               href={CLINIC_INFO.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative rounded-2xl overflow-hidden border border-[#DCE5D8] aspect-square bg-[#FFFDF9] block shadow-2xs"
+              className="group relative rounded-2xl overflow-hidden border border-[#D9E6DE] aspect-square bg-[#FFFFFF] block shadow-xs"
               aria-label={`View ${img.caption} on Instagram`}
             >
               <Image
@@ -81,7 +81,7 @@ export const InstagramSection: React.FC = () => {
                 sizes="(max-width: 768px) 50vw, 25vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-103"
               />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#18332E]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3.5 text-white">
                 <p className="text-[11px] leading-tight font-medium">
                   {img.caption}
                 </p>

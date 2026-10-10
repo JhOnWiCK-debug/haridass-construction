@@ -29,7 +29,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F6F0] text-[#344139] font-sans antialiased selection:bg-[#E7EEE4] selection:text-[#203B2F]">
+    <div className="min-h-screen bg-[#F7F5EF] text-[#18332E] font-sans antialiased selection:bg-[#EEF5EF] selection:text-[#176B57]">
       
       {/* 01. Refined Navigation */}
       <Navbar onOpenAppointmentModal={() => handleOpenBookingModal()} />
